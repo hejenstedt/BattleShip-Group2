@@ -51,6 +51,10 @@ public class Ocean {
 
 		
 	}
+	
+	public void shoot(int row, int column){
+		ocean[row][column].shootAtTile();
+	}
 
 	public void showOcean(){
 		
