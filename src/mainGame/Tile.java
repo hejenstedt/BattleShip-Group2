@@ -18,6 +18,7 @@ public class Tile {
 
 	public void shootAtTile() {
 		tileHasBeenShootAt = true;
+		boat.setHit();
 	}
 
 	public boolean tileHasBeenShootBefore() {
