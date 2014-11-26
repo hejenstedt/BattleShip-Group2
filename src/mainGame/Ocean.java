@@ -3,19 +3,23 @@ package mainGame;
 public class Ocean {
 
 	private Tile[][] ocean;
+	private int boatsInOcean;
 	
 	public Ocean() {
 		ocean = new Tile[10][10];
-		
+		boatsInOcean =0;
 		for (int i = 0; i < ocean.length; i++) {
 			for (int j = 0; j < ocean[0].length; j++) {
 				ocean[i][j] = new Tile();
 			}
 		}
-		
-		
 	}
-
+	
+	public boolean allBoatsPlaced(){
+		
+		
+		return false;
+	}
 	
 	public void placeBoat(int row, int column, int boatLength, String direction){
 		//TODO: where should the validation logic be?
@@ -46,7 +50,7 @@ public class Ocean {
 			}
 			break;
 		default:
-			break;
+			throw new IllegalArgumentException("That direction does not exist");
 		}
 
 		
@@ -54,6 +58,7 @@ public class Ocean {
 	
 	public void shoot(int row, int column){
 		ocean[row][column].shootAtTile();
+		//TODO: should we return hit or miss here?
 	}
 
 	public void showOcean(){
