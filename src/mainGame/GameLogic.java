@@ -39,28 +39,57 @@ public class GameLogic {
 
 	public void placeShips() {
 		String boatCoordinatesString, boatDirection;
-		String boatNames [];
+		String boatNames[];
 		int boatCoorinatesInt[] = new int[2];
-		String shipType[] = new String [] {null, null, "destroyer", "cruiser", "battleship", "aircraft carrier"};
-		
-		for (int i = 5; i > 1; i--){
-			//TODO: while loop, validating ship has been placed
-			playerOcean.showOcean();
-			System.out.println("Where do you want to place your "+ shipType[i] + "? ("+i+")");
+		String shipType[] = new String[] { null, null, "destroyer", "cruiser",
+				"battleship", "aircraft carrier" };
 
-			boatCoordinatesString = input.getInput(br, 1);
-			boatCoorinatesInt = input.changeCoordinatesToInt(boatCoordinatesString);
-			boatDirection = input.getDirection(br);
-			playerOcean.placeBoat(boatCoorinatesInt[0], boatCoorinatesInt[1], i,
-					boatDirection);
-			
-			if (i == 3){
-				System.out.println("Where do you want to place your sumbmarine? ("+i+")");
+		boolean boatPlaced = false;
+		for (int i = 5; i > 1; i--) {
+			boatPlaced = false;
+			playerOcean.showOceanWithBoats();
+			while (!boatPlaced) {
+				System.out.println("Where do you want to place your "
+						+ shipType[i] + "? (" + i + ")");
+
 				boatCoordinatesString = input.getInput(br, 1);
-				boatCoorinatesInt = input.changeCoordinatesToInt(boatCoordinatesString);
+				boatCoorinatesInt = input
+						.changeCoordinatesToInt(boatCoordinatesString);
 				boatDirection = input.getDirection(br);
-				playerOcean.placeBoat(boatCoorinatesInt[0], boatCoorinatesInt[1], i,
-						boatDirection);
+
+				try {
+					playerOcean.placeBoat(boatCoorinatesInt[0],
+							boatCoorinatesInt[1], i, boatDirection);
+					boatPlaced = true;
+				} catch (IllegalArgumentException tileOccupied) {
+					System.out.print("Can not place boat on top of anohter boat. ");
+				} catch (IndexOutOfBoundsException boatOutsideGrid) {
+					System.out.print("Boat outside of engagement zone. "); //TODO: better wording
+				}
+			}
+
+			if (i == 3) {
+				boatPlaced = false;
+				playerOcean.showOceanWithBoats();
+				while (!boatPlaced) {
+					System.out
+							.println("Where do you want to place your sumbmarine? ("
+									+ i + ")");
+					boatCoordinatesString = input.getInput(br, 1);
+					boatCoorinatesInt = input
+							.changeCoordinatesToInt(boatCoordinatesString);
+					boatDirection = input.getDirection(br);
+
+					try {
+						playerOcean.placeBoat(boatCoorinatesInt[0],
+								boatCoorinatesInt[1], i, boatDirection);
+						boatPlaced = true;
+					} catch (IllegalArgumentException tileOccupied) {
+						System.out.print("Can not place boat on top of anohter boat. ");
+					} catch (IndexOutOfBoundsException boatOutsideGrid) {
+						System.out.print("Boat outside of engagement zone. "); //TODO: better wording
+					}
+				}
 			}
 		}
 
@@ -88,7 +117,7 @@ public class GameLogic {
 					if (validInput.equals("exit")) {
 						System.exit(0); // TODO: change?
 					} else if (validInput.equals("show")) {
-						// TODO: show player grid with boats
+						playerOcean.showOceanWithBoats();
 					} else {
 						coordinates = input.changeCoordinatesToInt(validInput);
 						coordinatesSelected = true;
