@@ -14,13 +14,14 @@ public class Ocean {
 			}
 		}
 	}
-	
+
 	public boolean allBoatsPlaced() {
 
 		if (boatsInOcean == 5) {
 			return true;
 		}
 		return false;
+
 	}
 
 	public void placeBoat(int row, int column, int boatLength, String direction) {
@@ -33,12 +34,10 @@ public class Ocean {
 
 				placeBoatOnTiles(row, column, boat, direction);
 				boatsInOcean++;
-			}
-			else {
+			} else {
 				throw new IllegalArgumentException("Boat placement not valid.");
 			}
 
-			
 		} else {
 			throw new IllegalArgumentException(
 					"All boats already placed in the ocean.");
@@ -107,7 +106,7 @@ public class Ocean {
 			break;
 		case "east":
 
-		for (int i = 0; i < boatLength; i++) {
+			for (int i = 0; i < boatLength; i++) {
 				if (ocean[row][column + i].isBoatOnTile()) {
 					validBoatPlacement = false;
 				}
@@ -135,6 +134,16 @@ public class Ocean {
 		return true;
 	}
 
+	public void cleanOcean() {
+		boatsInOcean = 0;
+		for (int i = 0; i < ocean.length; i++) {
+			for (int j = 0; j < ocean[0].length; j++) {
+				ocean[i][j] = null;
+				ocean[i][j] = new Tile();
+			}
+		}
+	}
+
 	public void showOcean() {
 
 		System.out.println("  A B C D E F G H I J");
@@ -152,8 +161,8 @@ public class Ocean {
 		System.out.println("  A B C D E F G H I J");
 
 	}
-	
-	public void showOceanWithBoats(){
+
+	public void showOceanWithBoats() {
 
 		System.out.println("  A B C D E F G H I J");
 		System.out.println(" ______________________");
@@ -170,5 +179,4 @@ public class Ocean {
 		System.out.println("  A B C D E F G H I J");
 
 	}
-
 }
