@@ -103,8 +103,6 @@ public class GameLogic {
 		boolean allBoatsShotDown = false;
 
 		while (!allBoatsShotDown) {
-			// currentPlayer++
-			// if (currentPlayer == 2){currentPlayer = 0}
 
 			if (currentPlayer == 1) { // get input from player
 				boolean coordinatesSelected = false;
@@ -127,13 +125,22 @@ public class GameLogic {
 
 				// TODO: change to AI ocean
 
+				//TODO: better output when shooting
+				if (playerOcean.isValidShot(coordinates[0], coordinates[1])){
 				playerOcean.shoot(coordinates[0], coordinates[1]);
 				playerOcean.showOcean();
+				}
+				else {
+					System.out.print("Tile already shot at. ");
+				}
 
 			}
 			if (currentPlayer == 0) {
 				// TODO: add AIlogic here
 			}
+			
+			// currentPlayer++
+			// if (currentPlayer == 2){currentPlayer = 0}
 
 		}
 
