@@ -14,7 +14,7 @@ public class Ocean {
 			}
 		}
 	}
- //TODO: method for showing grid with boats
+	
 	public boolean allBoatsPlaced() {
 
 		if (boatsInOcean == 5) {
@@ -144,6 +144,24 @@ public class Ocean {
 			System.out.print(row + "|");
 			for (Tile tile : tiles) {
 				System.out.print(tile.toString() + " ");
+			}
+			System.out.println("| " + row);
+			row++;
+		}
+		System.out.println(" ______________________");
+		System.out.println("  A B C D E F G H I J");
+
+	}
+	
+	public void showOceanWithBoats(){
+
+		System.out.println("  A B C D E F G H I J");
+		System.out.println(" ______________________");
+		int row = 0;
+		for (Tile[] tiles : ocean) {
+			System.out.print(row + "|");
+			for (Tile tile : tiles) {
+				System.out.print(tile.tileShowingBoat() + " ");
 			}
 			System.out.println("| " + row);
 			row++;

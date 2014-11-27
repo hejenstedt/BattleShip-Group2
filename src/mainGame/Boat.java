@@ -36,7 +36,13 @@ public class Boat {
 	}
 	
 	public String toString(){
-		return ""+boatShotAt.length;
+		
+		if (boatSinked()) {
+			return ""+boatShotAt.length;
+			
+		}
+		return "H";
+		
 	}
 
 }
