@@ -24,8 +24,9 @@ public class InputFromPlayer {
 		String direction = null;
 		boolean validDirection = false;
 
-		System.out.println("what direction? ('north', 'south', 'east' or 'west')");
-		
+		System.out
+				.println("what direction? ('north', 'south', 'east' or 'west')");
+
 		while (!validDirection) {
 
 			try {
@@ -85,15 +86,12 @@ public class InputFromPlayer {
 
 			else if (inputFromUser.equals(keywords[0])
 					|| inputFromUser.equals(keywords[1])) {
-				
-				if (inputType == 0){
-				System.out.println("Feature not yet added."); // TODO: remove
-																// this
-				// validCoordinates = true; TODO: remove comment, change
-				// keywords?
+
+				if (inputType == 0) {
+					validCoordinates = true;
 				} else {
 					System.out
-					.println("Invalid input. Valid input is 'coordinates'");
+							.println("Invalid input. Valid input is 'coordinates'");
 				}
 			}
 
