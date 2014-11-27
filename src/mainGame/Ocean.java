@@ -14,7 +14,7 @@ public class Ocean {
 			}
 		}
 	}
-
+ //TODO: method for showing grid with boats
 	public boolean allBoatsPlaced() {
 
 		if (boatsInOcean == 5) {
