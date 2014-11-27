@@ -2,14 +2,19 @@ package mainGame;
 
 public class Boat {
 	private boolean[] boatShotAt;
+	private int boatLength;
 
 	public Boat(int length) {
 		boatShotAt = new boolean[length];
-
+		boatLength=length;
 		for (int i = 0; i < boatShotAt.length; i++) {
 			boatShotAt[i] = false;
 		}
 
+	}
+	
+	public int getBoatLength() {
+		return boatLength;
 	}
 
 	public boolean boatSinked() {

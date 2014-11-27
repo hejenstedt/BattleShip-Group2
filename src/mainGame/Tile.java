@@ -15,6 +15,10 @@ public class Tile {
 		this.boat= boat;
 		boatExistsOnTile= true;
 	}
+	
+	public boolean isBoatOnTile(){
+		return boatExistsOnTile;
+	}
 
 	public void shootAtTile() {
 		tileHasBeenShootAt = true;

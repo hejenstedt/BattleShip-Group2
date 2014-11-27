@@ -1,7 +1,7 @@
 package mainGame;
 
 public class Ocean {
-
+	// TODO: method that cleans oceans
 	private Tile[][] ocean;
 	private int boatsInOcean;
 
@@ -25,40 +25,20 @@ public class Ocean {
 
 	public void placeBoat(int row, int column, int boatLength, String direction) {
 		// TODO: where should the validation logic be?
-		// TODO: where should we turn char input into int input?
 		if (!allBoatsPlaced()) {
 			// TODO: Think this logic should be before we check if it is a valid
 			// placement of the boat
 			Boat boat = new Boat(boatLength);
-			ocean[row][column].setBoatOnTile(boat);
+			if (isPlacementValid(row, column, boatLength, direction)) {
 
-			switch (direction) {
-			case "south":
-				for (int i = 1; i < boatLength; i++) {
-					ocean[row + i][column].setBoatOnTile(boat);
-				}
-				break;
-			case "north":
-				for (int i = 1; i < boatLength; i++) {
-					ocean[row - i][column].setBoatOnTile(boat);
-				}
-				break;
-			case "west":
-				for (int i = 1; i < boatLength; i++) {
-					ocean[row][column - 1].setBoatOnTile(boat);
-				}
-				break;
-			case "east":
-				for (int i = 1; i < boatLength; i++) {
-					ocean[row][column + 1].setBoatOnTile(boat);
-				}
-				break;
-			default:
-				throw new IllegalArgumentException(
-						"That direction does not exist");
+				placeBoatOnTiles(row, column, boat, direction);
+				boatsInOcean++;
+			}
+			else {
+				throw new IllegalArgumentException("Boat placement not valid.");
 			}
 
-			boatsInOcean++;
+			
 		} else {
 			throw new IllegalArgumentException(
 					"All boats already placed in the ocean.");
@@ -66,15 +46,89 @@ public class Ocean {
 
 	}
 
+	private void placeBoatOnTiles(int row, int column, Boat boat,
+			String direction) {
+
+		switch (direction) {
+		case "south":
+			for (int i = 0; i < boat.getBoatLength(); i++) {
+				ocean[row + i][column].setBoatOnTile(boat);
+			}
+			break;
+		case "north":
+			for (int i = 0; i < boat.getBoatLength(); i++) {
+				ocean[row - i][column].setBoatOnTile(boat);
+			}
+			break;
+		case "west":
+			for (int i = 0; i < boat.getBoatLength(); i++) {
+				ocean[row][column - i].setBoatOnTile(boat);
+			}
+			break;
+		case "east":
+			for (int i = 0; i < boat.getBoatLength(); i++) {
+				ocean[row][column + i].setBoatOnTile(boat);
+			}
+			break;
+		default:
+			throw new IllegalArgumentException("That direction does not exist");
+		}
+
+	}
+
+	private boolean isPlacementValid(int row, int column, int boatLength,
+			String direction) {
+		boolean validBoatPlacement = true;
+
+		switch (direction) {
+		case "south":
+			for (int i = 0; i < boatLength; i++) {
+				if (ocean[row + i][column].isBoatOnTile()) {
+					validBoatPlacement = false;
+				}
+			}
+			break;
+		case "north":
+
+			for (int i = 0; i < boatLength; i++) {
+				if (ocean[row - i][column].isBoatOnTile()) {
+					validBoatPlacement = false;
+				}
+			}
+
+			break;
+		case "west":
+
+			for (int i = 0; i < boatLength; i++) {
+				if (ocean[row][column - i].isBoatOnTile()) {
+					validBoatPlacement = false;
+				}
+			}
+			break;
+		case "east":
+
+		for (int i = 0; i < boatLength; i++) {
+				if (ocean[row][column + i].isBoatOnTile()) {
+					validBoatPlacement = false;
+				}
+			}
+			break;
+		default:
+			throw new IllegalArgumentException("That direction does not exist");
+		}
+
+		return validBoatPlacement;
+	}
+
 	public void shoot(int row, int column) {
 		if (isValidShot(row, column)) {
 			ocean[row][column].shootAtTile();
 			// TODO: should we return hit or miss from this method?
 		}
-		//TODO: return not a valid choice... what should be returned?
+		// TODO: return not a valid choice... what should be returned?
 	}
 
-	private boolean isValidShot(int row, int column) {
+	boolean isValidShot(int row, int column) {
 		if (ocean[row][column].tileHasBeenShootBefore()) {
 			return false;
 		}
