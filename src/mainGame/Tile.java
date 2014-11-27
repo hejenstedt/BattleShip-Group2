@@ -43,4 +43,12 @@ public class Tile {
 		return "~";
 	}
 
+	public String tileShowingBoat() {
+		
+			if (boatExistsOnTile) {
+				return ""+boat.getBoatLength();
+			}
+		return "~";
+	}
+	
 }
