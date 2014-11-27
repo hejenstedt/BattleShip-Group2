@@ -25,7 +25,7 @@ public class GameLogic {
 		playerOcean = new Ocean();
 		aiOcean = new Ocean();
 		input = new InputFromPlayer();
-		aiLogic = new AIlogic();
+		aiLogic = new AIlogic(playerOcean, aiOcean);
 
 	}
 
@@ -64,11 +64,7 @@ public class GameLogic {
 			}
 		}
 
-		
-
-	
-
-		// TODO: AI ship placement logic
+		aiLogic.placeAIShips();
 	}
 
 	public void playGame() {
