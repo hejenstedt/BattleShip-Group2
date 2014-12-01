@@ -6,6 +6,7 @@ public class AIlogic {
 
 	private Ocean playerOcean, aiOcean;
 	private Random rand;
+	private int[] coordinates;
 
 	public AIlogic(Ocean playerOcean, Ocean aiOcean) {
 		this.aiOcean = aiOcean;
@@ -52,13 +53,11 @@ public class AIlogic {
 
 	private int[] aiLogicEasy() {
 		boolean validShot = false;
-		int[] coordinates = null;
+		coordinates = null;
 
 		while (!validShot) {
-			int row = rand.nextInt(10);
-			int column = rand.nextInt(10);
-			validShot = playerOcean.isValidShot(row, column);
-			coordinates = new int[] { row, column };
+			generateRandomCoordinates();
+			validShot = playerOcean.isValidShot(coordinates[0], coordinates[1]);
 		}
 
 		return coordinates;
@@ -79,8 +78,26 @@ public class AIlogic {
 		return null;
 	}
 
+	private void generateRandomCoordinates() {
+		int row = rand.nextInt(10);
+		int column = rand.nextInt(10);
+		coordinates = new int[] { row, column };
+	}
+
+	public int[] generateAIShipCoordinates() {
+		generateRandomCoordinates();
+		return coordinates;
+	}
+	
+	public String generateAIShipDirection(){
+	
+		int direction = rand.nextInt(3);
+		return getDirectionInString(direction);
+		
+	}
+
 	public void placeAIShips() {
 		// TODO Auto-generated method stub
-
+//		aiOcean.placeBoat(row, column, boatLength, direction);
 	}
 }

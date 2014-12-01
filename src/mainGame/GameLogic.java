@@ -52,73 +52,80 @@ public class GameLogic {
 		int boatCoorinatesInt[] = new int[2];
 		String shipType[] = new String[] { null, null, "destroyer", "cruiser",
 				"battleship", "aircraft carrier" };
+		for (Player currentPlayer : players) {
 
-		boolean boatPlaced = false;
-		for (int i = 5; i > 1; i--) {
-			boatPlaced = false;
-			player1.getOcean().showOceanWithBoats();
-			while (!boatPlaced) {
-				System.out.println("Where do you want to place your "
-						+ shipType[i] + "? (" + i + ")");
+			boolean boatPlaced = false;
+			for (int i = 5; i > 1; i--) {
+				placeOneShip(shipType, currentPlayer, i);
+
+				if (i == 3) {
+					placeOneShip(shipType, currentPlayer, i);
+				}
+			}
+
+		}
+	}
+
+	private void placeOneShip(String[] shipType, Player currentPlayer, int i) {
+		String boatCoordinatesString;
+		String boatDirection;
+		int[] boatCoorinatesInt;
+		boolean boatPlaced;
+		boatPlaced = false;
+		currentPlayer.getOcean().showOceanWithBoats();
+
+		// TODO: with boats for player, without for AI
+		// Can we place a method in the Player class that shows the
+		// ocean with boats if it is a player and without if it is an AI
+		while (!boatPlaced) {
+			System.out.println(currentPlayer.getName()
+					+ " Where do you want to place your " + shipType[i]
+					+ "? (" + i + ")");
+
+			if (currentPlayer.isPlayerAnAI()) {
+				boatCoorinatesInt = aiLogic.generateAIShipCoordinates();
+				boatDirection = aiLogic.generateAIShipDirection();
+			} else {
 
 				boatCoordinatesString = input.getInput(br, 1);
 				boatCoorinatesInt = input
 						.changeCoordinatesToInt(boatCoordinatesString);
+				// TODO: change so that the int[] is returned at once
 				boatDirection = input.getDirection(br);
-
-				try {
-					player1.getOcean().placeBoat(boatCoorinatesInt[0],
-							boatCoorinatesInt[1], i, boatDirection);
-					boatPlaced = true;
-				} catch (IllegalArgumentException tileOccupied) {
-					System.out
-							.print("Can not place boat on top of anohter boat. ");
-				} catch (IndexOutOfBoundsException boatOutsideGrid) {
-					System.out.print("Boat outside of engagement zone. "); 
-					// TODO: better wording
-				}
 			}
 
-			if (i == 3) {
-				boatPlaced = false;
-				player1.getOcean().showOceanWithBoats();
-				while (!boatPlaced) {
-					System.out
-							.println("Where do you want to place your sumbmarine? ("
-									+ i + ")");
-					boatCoordinatesString = input.getInput(br, 1);
-					boatCoorinatesInt = input
-							.changeCoordinatesToInt(boatCoordinatesString);
-					boatDirection = input.getDirection(br);
+			try {
+				currentPlayer.getOcean().placeBoat(
+						boatCoorinatesInt[0], boatCoorinatesInt[1], i,
+						boatDirection);
+				boatPlaced = true;
+			} catch (IllegalArgumentException tileOccupied) {
+				if (!currentPlayer.isPlayerAnAI()) {
 
-					try {
-						player1.getOcean().placeBoat(boatCoorinatesInt[0],
-								boatCoorinatesInt[1], i, boatDirection);
-						boatPlaced = true;
-					} catch (IllegalArgumentException tileOccupied) {
-						System.out
-								.print("Can not place boat on top of anohter boat. ");
-					} catch (IndexOutOfBoundsException boatOutsideGrid) {
-						System.out.print("Boat outside of engagement zone. "); 
-						// TODO: better wording
-					}
+					System.out
+							.print("Can not place boat on top of another boat. ");
 				}
+			} catch (IndexOutOfBoundsException boatOutsideGrid) {
+				if (!currentPlayer.isPlayerAnAI()) {
+
+					System.out
+							.print("Boat outside of engagement zone. ");
+				}
+				// TODO: better wording
 			}
 		}
-
-		aiLogic.placeAIShips();
 	}
 
 	public void playGame() {
-		int currentPlayer = 1; 
+		int currentPlayer = 1;
 		// 1 = player, 0 = AI
-		//TODO: change to boolean method called "isPlayerAI"
+		// TODO: change to boolean method called "isPlayerAI"
 		boolean allBoatsShotDown = false;
 		int[] coordinates = null;
 
 		while (!allBoatsShotDown) {
 
-			if (currentPlayer == 1) { 
+			if (currentPlayer == 1) {
 				// get input from player
 
 				coordinates = this.getPlayerCoordinates();
@@ -157,7 +164,7 @@ public class GameLogic {
 			coordinates = input.changeCoordinatesToInt(validInput);
 
 			if (validInput.equals("exit")) {
-				System.exit(0); 
+				System.exit(0);
 				// TODO: change to equals no matter case?
 			} else if (validInput.equals("show")) {
 				player1.getOcean().showOceanWithBoats();
@@ -167,7 +174,7 @@ public class GameLogic {
 				coordinatesSelected = true;
 			}
 
-			if (player1.getOcean().isValidShot(coordinates[0], coordinates[1])) { 
+			if (player1.getOcean().isValidShot(coordinates[0], coordinates[1])) {
 				// TODO: change to AI
 			} else {
 				System.out.print("Tile already shot at. ");

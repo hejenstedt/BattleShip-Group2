@@ -12,6 +12,9 @@ public class Player {
 		this.name= name;
 	}
 	
+	public boolean isPlayerAnAI(){
+		return playerIsAI;
+	}
 	public void setPlayerAsAI() {
 		playerIsAI = true;
 	}
