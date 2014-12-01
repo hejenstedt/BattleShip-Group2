@@ -135,7 +135,7 @@ public class GameLogic {
 
 			}
 			if (currentPlayer == 0) {
-				coordinates = aiLogic.generateAIcoordinates(0);
+				coordinates = aiLogic.generateAIcoordinates(1);
 			}
 
 			// shots at the other players ocean (if currentPlayer is 1, shoots
