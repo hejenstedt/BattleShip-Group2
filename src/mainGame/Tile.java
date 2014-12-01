@@ -1,5 +1,5 @@
 package mainGame;
-
+//TEST
 public class Tile {
 
 	private boolean boatExistsOnTile;
