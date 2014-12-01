@@ -1,13 +1,13 @@
 package mainGame;
 
 public class Ocean {
-	// TODO: method that cleans oceans
+
 	private Tile[][] ocean;
+	int boatsInOcean;
+
 	public Tile[][] getOcean() {
 		return ocean;
 	}
-
-	private int boatsInOcean;
 
 	public Ocean() {
 		ocean = new Tile[10][10];
@@ -137,9 +137,9 @@ public class Ocean {
 		}
 		return true;
 	}
-	
-	public String lookAtTile(int row, int column){
-		
+
+	public String lookAtTile(int row, int column) {
+
 		return ocean[row][column].toString();
 	}
 

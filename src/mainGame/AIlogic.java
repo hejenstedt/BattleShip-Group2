@@ -17,7 +17,8 @@ public class AIlogic {
 	public int[] generateAIcoordinates(int difficulty) {
 
 		int[] coordinates = null;
-		switch (difficulty) { // different logic depending on difficulty
+		switch (difficulty) { 
+		// different logic depending on difficulty
 
 		case (0): {
 			coordinates = aiLogicEasy();
