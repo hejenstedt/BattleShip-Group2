@@ -74,9 +74,8 @@ public class GameLogic {
 					System.out
 							.print("Can not place boat on top of anohter boat. ");
 				} catch (IndexOutOfBoundsException boatOutsideGrid) {
-					System.out.print("Boat outside of engagement zone. "); // TODO:
-																			// better
-																			// wording
+					System.out.print("Boat outside of engagement zone. "); 
+					// TODO: better wording
 				}
 			}
 
@@ -100,9 +99,8 @@ public class GameLogic {
 						System.out
 								.print("Can not place boat on top of anohter boat. ");
 					} catch (IndexOutOfBoundsException boatOutsideGrid) {
-						System.out.print("Boat outside of engagement zone. "); // TODO:
-																				// better
-																				// wording
+						System.out.print("Boat outside of engagement zone. "); 
+						// TODO: better wording
 					}
 				}
 			}
@@ -112,13 +110,16 @@ public class GameLogic {
 	}
 
 	public void playGame() {
-		int currentPlayer = 1; // 1 = player, 0 = AI
+		int currentPlayer = 1; 
+		// 1 = player, 0 = AI
+		//TODO: change to boolean method called "isPlayerAI"
 		boolean allBoatsShotDown = false;
 		int[] coordinates = null;
 
 		while (!allBoatsShotDown) {
 
-			if (currentPlayer == 1) { // get input from player
+			if (currentPlayer == 1) { 
+				// get input from player
 
 				coordinates = this.getPlayerCoordinates();
 
@@ -156,18 +157,18 @@ public class GameLogic {
 			coordinates = input.changeCoordinatesToInt(validInput);
 
 			if (validInput.equals("exit")) {
-				System.exit(0); // TODO: change?
+				System.exit(0); 
+				// TODO: change to equals no matter case?
 			} else if (validInput.equals("show")) {
 				player1.getOcean().showOceanWithBoats();
+				// TODO: change to equals no matter case?
 			} else {
 				coordinates = input.changeCoordinatesToInt(validInput);
 				coordinatesSelected = true;
 			}
 
-			if (player1.getOcean().isValidShot(coordinates[0], coordinates[1])) { // TODO:
-																					// change
-																					// to
-																					// AI
+			if (player1.getOcean().isValidShot(coordinates[0], coordinates[1])) { 
+				// TODO: change to AI
 			} else {
 				System.out.print("Tile already shot at. ");
 			}

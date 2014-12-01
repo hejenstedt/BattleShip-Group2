@@ -77,9 +77,8 @@ public class InputFromPlayer {
 
 				else {
 					System.out
-							.println("Invalid input. Coordinates are: 'letter' (A-J) and 'number' (0-9)"); // TODO:
-																											// change
-																											// text
+							.println("Invalid input. Coordinates are: 'letter' (A-J) and 'number' (0-9)"); 
+					// TODO: change text
 				}
 
 			}
