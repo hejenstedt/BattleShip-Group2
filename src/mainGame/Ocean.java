@@ -28,12 +28,12 @@ public class Ocean {
 
 	}
 
-	public void placeBoat(int row, int column, int boatLength, String direction) {
+	public void placeBoat(int row, int column, int boatLength, String direction, String boatName) {
 		// TODO: where should the validation logic be?
 		if (!allBoatsPlaced()) {
 			// TODO: Think this logic should be before we check if it is a valid
 			// placement of the boat
-			Boat boat = new Boat(boatLength);
+			Boat boat = new Boat(boatLength, boatName);
 			if (isPlacementValid(row, column, boatLength, direction)) {
 
 				placeBoatOnTiles(row, column, boat, direction);
@@ -132,10 +132,14 @@ public class Ocean {
 	}
 
 	boolean isValidShot(int row, int column) {
-		if (ocean[row][column].tileHasBeenShootBefore()) {
-			return false;
+
+		if (row > -1 && row < 10 && column > -1 && column < 10) {
+			if (ocean[row][column].tileHasBeenShootBefore()) {
+				return false;
+			}
+			return true;
 		}
-		return true;
+		return false;
 	}
 
 	public String lookAtTile(int row, int column) {
@@ -187,5 +191,9 @@ public class Ocean {
 		System.out.println(" ______________________");
 		System.out.println("  A B C D E F G H I J");
 
+	}
+	
+	public Tile getTile(int i, int j){
+		return ocean[i][j];
 	}
 }

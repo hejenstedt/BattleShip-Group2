@@ -3,8 +3,10 @@ package mainGame;
 public class Boat {
 	private boolean[] boatShotAt;
 	private int boatLength;
+	private String name;
 
-	public Boat(int length) {
+	public Boat(int length, String name) {
+		this.name = name;
 		boatShotAt = new boolean[length];
 		boatLength=length;
 		for (int i = 0; i < boatShotAt.length; i++) {
@@ -41,6 +43,14 @@ public class Boat {
 			
 		}
 		return "H";
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

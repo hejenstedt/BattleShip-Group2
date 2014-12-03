@@ -14,6 +14,10 @@ public class Tile {
 	private boolean tileHasBeenShootAt;
 	private Boat boat;
 
+	public Boat getBoat() {
+		return boat;
+	}
+
 	public Tile() {
 		tileHasBeenShootAt = false;
 		boatExistsOnTile = false;

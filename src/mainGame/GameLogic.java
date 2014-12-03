@@ -114,17 +114,17 @@ public class GameLogic {
 
 			boolean boatPlaced = false;
 			for (int i = 5; i > 1; i--) {
-				placeOneShip(shipType, currentPlayer, i);
+				placeOneShip(shipType[i], currentPlayer, i);
 
 				if (i == 3) {
-					placeOneShip(shipType, currentPlayer, i);
+					placeOneShip("Submarine", currentPlayer, i);
 				}
 			}
 
 		}
 	}
 
-	private void placeOneShip(String[] shipType, Player currentPlayer, int i) {
+	private void placeOneShip(String shipType, Player currentPlayer, int i) {
 		String boatCoordinatesString;
 		String boatDirection;
 		int[] boatCoorinatesInt;
@@ -142,7 +142,7 @@ public class GameLogic {
 			if (!currentPlayer.isPlayerAnAI()) { // only prints if player is not
 													// AI
 				System.out.println(currentPlayer.getName()
-						+ ", Where do you want to place your " + shipType[i]
+						+ ", Where do you want to place your " + shipType
 						+ "? (" + i + ")");
 			}
 
@@ -160,7 +160,7 @@ public class GameLogic {
 
 			try {
 				currentPlayer.getOcean().placeBoat(boatCoorinatesInt[0],
-						boatCoorinatesInt[1], i, boatDirection);
+						boatCoorinatesInt[1], i, boatDirection, shipType);
 				boatPlaced = true;
 			} catch (IllegalArgumentException tileOccupied) {
 				if (!currentPlayer.isPlayerAnAI()) {
@@ -191,7 +191,7 @@ public class GameLogic {
 			if (currentPlayer == 1) {
 				System.out.println("\n"+player1.getName() + "s turn");
 				// get input from player
-
+				player2.getOcean().showOcean();
 				coordinates = this.getPlayerCoordinates();
 				// TODO: better output when shooting
 
@@ -216,6 +216,10 @@ public class GameLogic {
 					.shoot(coordinates[0], coordinates[1]);
 			players.get(currentPlayer).getOcean().showOcean();
 			
+			if (!players.get(currentPlayer).isPlayerAnAI()){ // if board is playerboard
+				this.aiTextOutput(coordinates[0], coordinates[1]);
+			}
+			
 			this.sleep(700);
 
 			currentPlayer++;
@@ -225,6 +229,38 @@ public class GameLogic {
 
 		}
 
+	}
+	
+
+	private void aiTextOutput(int i, int j) {
+		
+		System.out.print(player2.getName()+" shot at "+this.coordinateToChar(i)+j);
+		
+		if (player1.getOcean().lookAtTile(i, j).equals("X")){
+			System.out.println("Miss");
+		}
+		else if (player1.getOcean().lookAtTile(i, j).equals("H")){
+			System.out.println("Hit");
+		}
+		else{
+			System.out.println("Your "+player1.getOcean().getTile(i, j).getBoat().getName()+" has been destroyed");
+		}
+	}
+	private String coordinateToChar(int i){
+		switch (i){
+		case 0: return "A";
+		case 1: return "B";
+		case 2: return "C";
+		case 3: return "D";
+		case 4: return "E";
+		case 5: return "F";
+		case 6: return "G";
+		case 7: return "H";
+		case 8: return "I";
+		case 9: return "J";
+		
+		}
+		return "error";
 	}
 
 	public int[] getPlayerCoordinates() {
@@ -250,8 +286,7 @@ public class GameLogic {
 
 		} // while coordinatesSelected
 
-		if (player1.getOcean().isValidShot(coordinates[0], coordinates[1])) {
-			// TODO: change to AI
+		if (player2.getOcean().isValidShot(coordinates[0], coordinates[1])) {
 		} else {
 			System.out.print("Tile already shot at. ");
 		}
