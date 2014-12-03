@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GameLogic {
 
@@ -81,8 +82,26 @@ public class GameLogic {
 				e.printStackTrace();
 			}
 		} // while end
-
-		// TODO: give AI name
+		
+		Random rand = new Random();
+		int aiNameID = rand.nextInt(10);
+		
+		switch (aiNameID){
+		
+		case 0: player2.setName("Isoroku Yamamoto"); break;
+		case 1: player2.setName("Erich von Manstein"); break;
+		case 2: player2.setName("Omar Bradley"); break;
+		case 3: player2.setName("Henry Arnold"); break;
+		case 4: player2.setName("Georgy Zhukov"); break;
+		case 5: player2.setName("Bernard Montgomery"); break;
+		case 6: player2.setName("Douglas MacArthur"); break;
+		case 7: player2.setName("Dwight D. Eisenhower"); break;
+		case 8: player2.setName("Erwin Rommel"); break;
+		case 9: player2.setName("George S. Patton"); break;	
+		default: break;
+		
+		}
+		
 
 	}
 
