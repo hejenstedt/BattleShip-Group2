@@ -39,7 +39,7 @@ public class GameLogic {
 		players.add(player2);
 
 		input = new InputFromPlayer();
-		aiLogic = new AIlogic(player1.getOcean(), player2.getOcean());
+		aiLogic = new AIlogic(player1.getOcean());
 
 	}
 
@@ -234,7 +234,7 @@ public class GameLogic {
 
 	private void aiTextOutput(int i, int j) {
 		
-		System.out.print(player2.getName()+" shot at "+this.coordinateToChar(i)+j);
+		System.out.print(player2.getName()+" shot at "+this.coordinateToChar(j)+i+" ");
 		
 		if (player1.getOcean().lookAtTile(i, j).equals("X")){
 			System.out.println("Miss");
@@ -276,20 +276,19 @@ public class GameLogic {
 
 			if (validInput.equals("exit")) {
 				System.exit(0);
-				// TODO: change to equals no matter case?
 			} else if (validInput.equals("show")) {
 				player1.getOcean().showOceanWithBoats();
 			} else {
 				coordinates = input.changeCoordinatesToInt(validInput);
+			}
+			if (player2.getOcean().isValidShot(coordinates[0], coordinates[1])) {
 				coordinatesSelected = true;
+			} else {
+				System.out.print("Tile already shot at. ");
 			}
 
 		} // while coordinatesSelected
 
-		if (player2.getOcean().isValidShot(coordinates[0], coordinates[1])) {
-		} else {
-			System.out.print("Tile already shot at. ");
-		}
 		return coordinates;
 	}
 
