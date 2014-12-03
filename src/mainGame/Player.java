@@ -27,4 +27,9 @@ public class Player {
 		return ocean;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+		
+	}
+
 }
