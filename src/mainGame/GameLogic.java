@@ -88,16 +88,16 @@ public class GameLogic {
 		
 		switch (aiNameID){
 		
-		case 0: player2.setName("Isoroku Yamamoto"); break;
-		case 1: player2.setName("Erich von Manstein"); break;
-		case 2: player2.setName("Omar Bradley"); break;
-		case 3: player2.setName("Henry Arnold"); break;
-		case 4: player2.setName("Georgy Zhukov"); break;
-		case 5: player2.setName("Bernard Montgomery"); break;
-		case 6: player2.setName("Douglas MacArthur"); break;
-		case 7: player2.setName("Dwight D. Eisenhower"); break;
-		case 8: player2.setName("Erwin Rommel"); break;
-		case 9: player2.setName("George S. Patton"); break;	
+		case 0: player2.setName("Japaneese Naval Marshal General Isoroku Yamamoto"); break;
+		case 1: player2.setName("German General Erich von Manstein"); break;
+		case 2: player2.setName("US General Omar Bradley"); break;
+		case 3: player2.setName("US General Henry Arnold"); break;
+		case 4: player2.setName("Soviet General Georgy Zhukov"); break;
+		case 5: player2.setName("Brittish General Bernard Montgomery"); break;
+		case 6: player2.setName("US General Douglas MacArthur"); break;
+		case 7: player2.setName("General Dwight D. Eisenhower"); break;
+		case 8: player2.setName("German Field Marshal Erwin Rommel"); break;
+		case 9: player2.setName("US General George S. Patton"); break;	
 		default: break;
 		
 		}
