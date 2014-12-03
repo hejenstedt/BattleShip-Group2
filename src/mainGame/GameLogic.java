@@ -63,7 +63,6 @@ public class GameLogic {
 				.println("What difficulty do you want to play against? (0 = Easy, 1 = Medium, 2 = Hard");
 
 		boolean validDifficultyInput = false;
-
 		while (!validDifficultyInput) {
 			try {
 
@@ -76,13 +75,14 @@ public class GameLogic {
 					validDifficultyInput = true;
 				} else {
 					System.out
-							.println("Invalid choise, choose '0', '1' or '2'");
+							.println("Invalid choise, choose difficulty: '0', '1' or '2'");
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		} // while end
 		
+		// ------------------- name AI --------------------------
 		Random rand = new Random();
 		int aiNameID = rand.nextInt(10);
 		
@@ -99,9 +99,8 @@ public class GameLogic {
 		case 8: player2.setName("German Field Marshal Erwin Rommel"); break;
 		case 9: player2.setName("US General George S. Patton"); break;	
 		default: break;
-		
 		}
-		
+		// -----------------------------------------------------------------
 
 	}
 
