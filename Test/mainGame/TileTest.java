@@ -22,7 +22,7 @@ public class TileTest {
 	@Test
 	public void tileWithShotBoatAtShouldReturnH(){
 		Tile tile = new Tile();
-		tile.setBoatOnTile(new Boat(2));
+		tile.setBoatOnTile(new Boat(2, null));
 		tile.shootAtTile();
 		assertTrue(tile.toString().equals("H"));
 	}
@@ -30,7 +30,7 @@ public class TileTest {
 	@Test
 	public void tileWithSunkenBoatAtShouldReturn1(){
 		Tile tile = new Tile();
-		tile.setBoatOnTile(new Boat(1));
+		tile.setBoatOnTile(new Boat(1, null));
 		tile.shootAtTile();
 		assertTrue(tile.toString().equals("1"));
 	}
