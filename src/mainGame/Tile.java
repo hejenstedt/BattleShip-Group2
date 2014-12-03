@@ -1,5 +1,13 @@
 package mainGame;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 public class Tile {
 
 	private boolean boatExistsOnTile;
@@ -24,6 +32,14 @@ public class Tile {
 		tileHasBeenShootAt = true;
 		if (boatExistsOnTile) {
 			boat.setHit();
+			this.playSound("kerboom.wav");
+			
+		}
+		else {
+			this.playSound("sploosh.wav");
+			
+			
+			
 		}
 	}
 
@@ -50,5 +66,20 @@ public class Tile {
 			}
 		return "~";
 	}
+	
+	public void playSound(String fileName) {
+		String soundFile = "sounds\\" + fileName;
+		Clip clip;
+		try {
+			clip = AudioSystem.getClip();
+			clip.open(AudioSystem.getAudioInputStream(new File(soundFile)));
+			clip.start();
+		} catch (IOException | UnsupportedAudioFileException e) {
+			e.printStackTrace();
+		} catch (LineUnavailableException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 }
