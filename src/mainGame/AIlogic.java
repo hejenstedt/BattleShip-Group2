@@ -7,13 +7,15 @@ public class AIlogic {
 	private Ocean playerOcean;
 	private Random rand;
 	private int[] coordinates;
-	boolean expertGoesForRows;
+	boolean hardGoesForRows;
+	boolean directionHard;
 
 	public AIlogic(Ocean playerOcean) {
 		this.playerOcean = playerOcean;
 		rand = new Random();
 		coordinates = new int[2];
-		expertGoesForRows = rand.nextBoolean();
+		hardGoesForRows = rand.nextBoolean();
+		directionHard = rand.nextBoolean();
 	}
 
 	public int[] generateAIcoordinates(int difficulty) {
@@ -46,60 +48,48 @@ public class AIlogic {
 
 	private int[] aiLogicHard() {
 		Tile[][] playersOcean = playerOcean.getOcean();
-		boolean direction = rand.nextBoolean();
 		// check playerOcean if there are any visible unsunken ships (H)
 		for (int i = 0; i < playersOcean.length; i++) {
 			
 			
 			for (int j = 0; j < playersOcean[0].length; j++) {
 				
-				
-				findsBoat:
 				if (playerOcean.lookAtTile(i, j).equals("H")) {
-					
-					
-					if (j < 9 && playerOcean.lookAtTile(i, j+1).equals("H")){
-						break findsBoat;
-					}
-					
-					if (i < 9 && playerOcean.lookAtTile(i+1, j).equals("H")){
-						i++;
-						j--;
-						break findsBoat;
-					}
-					
 
 					for (int k = 0; k < 4; k++) {
 
-						if (expertGoesForRows) {
+						
+						//TODO: Change directionHard when a tile is shot and does not have a boat?
+						
+						if (hardGoesForRows) {
 
-							if (direction) {
+							if (directionHard) {
 								if (playerOcean.isValidShot(i-1, j)) {
 									coordinates[0] = i-1;
 									coordinates[1] = j;
 									return coordinates;
 								}
-								direction = false;
+								directionHard = false;
 							} else {
 								if (playerOcean.isValidShot(i+1, j)) {
 									coordinates[0] = i+1;
 									coordinates[1] = j;
 									return coordinates;
 								}
-								direction = true;
+								directionHard = true;
 							}
 
 						}
 
 						else { // horizontal
 
-							if (direction) {
+							if (directionHard) {
 								if (playerOcean.isValidShot(i, j-1)) {
 									coordinates[0] = i;
 									coordinates[1] = j-1;
 									return coordinates;
 								}
-								direction = false;
+								directionHard = false;
 							} else {
 								if (playerOcean.isValidShot(i, j+1)) {
 									coordinates[0] = i;
@@ -107,15 +97,15 @@ public class AIlogic {
 									return coordinates;
 								}
 							}
-							direction = true;
+							directionHard = true;
 						}
 
 						if (k == 1){ // after second time in loop
-							if (expertGoesForRows){
-								expertGoesForRows = false;
+							if (hardGoesForRows){
+								hardGoesForRows = false;
 							}
 							else{
-								expertGoesForRows = true;
+								hardGoesForRows = true;
 							}
 						}
 						
@@ -124,7 +114,7 @@ public class AIlogic {
 			}
 		}
 
-		coordinates = generateRandomExpertCoordinates();
+		this.generateRandomExpertCoordinates();
 		return coordinates;
 	}
 
@@ -248,13 +238,18 @@ public class AIlogic {
 	}
 
 	private void generateRandomCoordinates() {
+
 		int row = rand.nextInt(10);
 		int column = rand.nextInt(10);
 		coordinates[0] = row;
 		coordinates[1] = column;
+		
 	}
 
-	private int[] generateRandomExpertCoordinates() {
+	private void generateRandomExpertCoordinates() {
+		boolean randomTileValid = false;
+		
+		while(!randomTileValid){
 		int row = rand.nextInt(10);
 
 		int column = rand.nextInt(5) * 2;
@@ -263,7 +258,11 @@ public class AIlogic {
 		}
 		coordinates[0] = row;
 		coordinates[1] = column;
-		return coordinates;
+		if (playerOcean.isValidShot(coordinates[0], coordinates[1])){
+			randomTileValid = true;
+		}
+		
+		}
 	}
 
 	public int[] generateAIShipCoordinates() {

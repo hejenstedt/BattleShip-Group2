@@ -136,9 +136,9 @@ public class Ocean {
 		if (row > -1 && row < 10 && column > -1 && column < 10) {
 			if (ocean[row][column].tileHasBeenShootBefore()) {
 				return false;
-			}
+			} // if shot before
 			return true;
-		}
+		} // if in grid
 		return false;
 	}
 

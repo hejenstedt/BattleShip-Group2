@@ -234,7 +234,7 @@ public class GameLogic {
 
 	private void aiTextOutput(int i, int j) {
 		
-		System.out.print(player2.getName()+" shot at "+this.coordinateToChar(j)+i+" ");
+		System.out.print(player2.getName()+" shot at "+this.coordinateToChar(j)+i+". ");
 		
 		if (player1.getOcean().lookAtTile(i, j).equals("X")){
 			System.out.println("Miss");
