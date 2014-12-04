@@ -5,6 +5,14 @@ public class Ocean {
 	private Tile[][] ocean;
 	int boatsInOcean;
 
+	public int getBoatsInOcean() {
+		return boatsInOcean;
+	}
+
+	public void setBoatsInOcean(int boatsInOcean) {
+		this.boatsInOcean = boatsInOcean;
+	}
+
 	public Tile[][] getOcean() {
 		return ocean;
 	}
@@ -126,6 +134,13 @@ public class Ocean {
 	public void shoot(int row, int column) {
 		if (isValidShot(row, column)) {
 			ocean[row][column].shootAtTile();
+			
+			if (ocean[row][column].isBoatOnTile()){
+				if (ocean[row][column].getBoat().boatSinked()){
+					boatsInOcean--;
+				}
+			}
+			
 			// TODO: should we return hit or miss from this method?
 		}
 		// TODO: return not a valid choice... what should be returned?

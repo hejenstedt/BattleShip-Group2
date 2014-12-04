@@ -37,7 +37,6 @@ public class Tile {
 		if (boatExistsOnTile) {
 			boat.setHit();
 			this.playSound("kerboom.wav");
-			
 		}
 		else {
 			this.playSound("sploosh.wav");

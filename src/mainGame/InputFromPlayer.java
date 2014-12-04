@@ -88,6 +88,8 @@ public class InputFromPlayer {
 
 				if (inputType == 0) {
 					validCoordinates = true;
+				} else if (inputType == 1 && inputFromUser.equals(keywords[0])){
+					System.exit(0);
 				} else {
 					System.out
 							.println("Invalid input. Valid input is 'coordinates'");

@@ -17,13 +17,18 @@ public class GameLogic {
 	int difficulty = 0;
 
 	public static void main(String[] args) {
+		
 
 		GameLogic game = new GameLogic();
 		game.initializeGame(game);
 
+		boolean playingGame = true;
+		
+		while(playingGame){
 		game.getSettings();
 		game.runGame(game);
-
+		
+		}
 	}
 
 	public void initializeGame(GameLogic game) {
@@ -221,13 +226,30 @@ public class GameLogic {
 			}
 			
 			this.sleep(700);
-
+			
+			if (players.get(currentPlayer).getOcean().getBoatsInOcean() == 0){
+			allBoatsShotDown = true;}
+			
 			currentPlayer++;
 			if (currentPlayer == 2) {
 				currentPlayer = 0;
 			}
 
+		} //allBoatsShotDown
+		
+		player1.getOcean().cleanOcean();
+		player2.getOcean().cleanOcean();
+		// game ends
+		
+		System.out.println(players.get(currentPlayer).getName()+" wins!");
+		
+		
+		System.out.print("Restarting game");
+		for (int i = 0; i < 10; i++) {
+			this.sleep(100);
+			System.out.print(".");
 		}
+		System.out.println("\nStarting new game\n");
 
 	}
 	
