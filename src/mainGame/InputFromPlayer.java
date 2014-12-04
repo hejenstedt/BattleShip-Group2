@@ -77,7 +77,7 @@ public class InputFromPlayer {
 
 				else {
 					System.out
-							.println("Invalid input. Coordinates are: 'letter' (A-J) and 'number' (0-9)"); 
+							.println("Invalid input. Coordinates are: 'letter' (A-J) and 'number' (0-9)");
 					// TODO: change text
 				}
 
@@ -86,9 +86,10 @@ public class InputFromPlayer {
 			else if (inputFromUser.equals(keywords[0])
 					|| inputFromUser.equals(keywords[1])) {
 
+				//TODO: What does below ifs mean? What is inputType 0 or 1??
 				if (inputType == 0) {
 					validCoordinates = true;
-				} else if (inputType == 1 && inputFromUser.equals(keywords[0])){
+				} else if (inputType == 1 && inputFromUser.equals(keywords[0])) {
 					System.exit(0);
 				} else {
 					System.out
@@ -147,4 +148,8 @@ public class InputFromPlayer {
 		return coordinatesArray;
 	}
 
+	public int[] getUserInputForCoordinates(BufferedReader br, int inputType){
+		return changeCoordinatesToInt(getInput(br, inputType));
+	}
+	
 }

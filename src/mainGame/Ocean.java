@@ -3,19 +3,7 @@ package mainGame;
 public class Ocean {
 
 	private Tile[][] ocean;
-	int boatsInOcean;
-
-	public int getBoatsInOcean() {
-		return boatsInOcean;
-	}
-
-	public void setBoatsInOcean(int boatsInOcean) {
-		this.boatsInOcean = boatsInOcean;
-	}
-
-	public Tile[][] getOcean() {
-		return ocean;
-	}
+	private int boatsInOcean;
 
 	public Ocean() {
 		ocean = new Tile[10][10];
@@ -27,7 +15,20 @@ public class Ocean {
 		}
 	}
 
-	public boolean allBoatsPlaced() {
+	public int getBoatsInOcean() {
+		return boatsInOcean;
+	}
+
+	//TODO: not used - remove
+	public void setBoatsInOcean(int boatsInOcean) {
+		this.boatsInOcean = boatsInOcean;
+	}
+
+	public Tile[][] getOcean() {
+		return ocean;
+	}
+
+	private boolean allBoatsPlaced() {
 
 		if (boatsInOcean == 5) {
 			return true;
@@ -36,7 +37,8 @@ public class Ocean {
 
 	}
 
-	public void placeBoat(int row, int column, int boatLength, String direction, String boatName) {
+	public void placeBoat(int row, int column, int boatLength,
+			String direction, String boatName) {
 		// TODO: where should the validation logic be?
 		if (!allBoatsPlaced()) {
 			// TODO: Think this logic should be before we check if it is a valid
@@ -134,13 +136,13 @@ public class Ocean {
 	public void shoot(int row, int column) {
 		if (isValidShot(row, column)) {
 			ocean[row][column].shootAtTile();
-			
-			if (ocean[row][column].isBoatOnTile()){
-				if (ocean[row][column].getBoat().boatSinked()){
+
+			if (ocean[row][column].isBoatOnTile()) {
+				if (ocean[row][column].getBoat().boatSinked()) {
 					boatsInOcean--;
 				}
 			}
-			
+
 			// TODO: should we return hit or miss from this method?
 		}
 		// TODO: return not a valid choice... what should be returned?
@@ -207,8 +209,8 @@ public class Ocean {
 		System.out.println("  A B C D E F G H I J");
 
 	}
-	
-	public Tile getTile(int i, int j){
+
+	public Tile getTile(int i, int j) {
 		return ocean[i][j];
 	}
 }

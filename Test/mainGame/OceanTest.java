@@ -51,9 +51,9 @@ public class OceanTest {
 	public void cleanedOceanShouldNotHaveAnyBoatsInIt(){
 		Ocean ocean = new Ocean();
 		ocean.placeBoat(1, 1, 2, "south", null);
-		assertTrue(ocean.boatsInOcean==1);
+		assertTrue(ocean.getBoatsInOcean()==1);
 		ocean.cleanOcean();
-		assertTrue(ocean.boatsInOcean==0);
+		assertTrue(ocean.getBoatsInOcean()==0);
 		
 	}
 	

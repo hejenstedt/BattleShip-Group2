@@ -22,13 +22,13 @@ public class Tile {
 		tileHasBeenShootAt = false;
 		boatExistsOnTile = false;
 	}
-	
-	public void setBoatOnTile(Boat boat){
-		this.boat= boat;
-		boatExistsOnTile= true;
+
+	public void setBoatOnTile(Boat boat) {
+		this.boat = boat;
+		boatExistsOnTile = true;
 	}
-	
-	public boolean isBoatOnTile(){
+
+	public boolean isBoatOnTile() {
 		return boatExistsOnTile;
 	}
 
@@ -37,12 +37,8 @@ public class Tile {
 		if (boatExistsOnTile) {
 			boat.setHit();
 			this.playSound("kerboom.wav");
-		}
-		else {
+		} else {
 			this.playSound("sploosh.wav");
-			
-			
-			
 		}
 	}
 
@@ -63,13 +59,13 @@ public class Tile {
 	}
 
 	public String tileShowingBoat() {
-		
-			if (boatExistsOnTile) {
-				return ""+boat.getBoatLength();
-			}
+
+		if (boatExistsOnTile) {
+			return "" + boat.getBoatLength();
+		}
 		return "~";
 	}
-	
+
 	public void playSound(String fileName) {
 		String soundFile = "sounds\\" + fileName;
 		Clip clip;
@@ -83,6 +79,5 @@ public class Tile {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 }

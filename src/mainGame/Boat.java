@@ -8,13 +8,13 @@ public class Boat {
 	public Boat(int length, String name) {
 		this.name = name;
 		boatShotAt = new boolean[length];
-		boatLength=length;
+		boatLength = length;
 		for (int i = 0; i < boatShotAt.length; i++) {
 			boatShotAt[i] = false;
 		}
 
 	}
-	
+
 	public int getBoatLength() {
 		return boatLength;
 	}
@@ -30,17 +30,16 @@ public class Boat {
 
 	public void setHit() {
 		for (int i = 0; i < boatShotAt.length; i++) {
-			if (boatShotAt[i] == false){
+			if (boatShotAt[i] == false) {
 				boatShotAt[i] = true;
 				break;
 			}
 		}
 	}
-	
-	public String toString(){
+
+	public String toString() {
 		if (boatSinked()) {
-			return ""+boatShotAt.length;
-			
+			return "" + boatShotAt.length;
 		}
 		return "H";
 	}

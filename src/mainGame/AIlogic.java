@@ -7,8 +7,8 @@ public class AIlogic {
 	private Ocean playerOcean;
 	private Random rand;
 	private int[] coordinates;
-	boolean hardGoesForRows;
-	boolean directionHard;
+	private boolean hardGoesForRows;
+	private boolean directionHard;
 
 	public AIlogic(Ocean playerOcean) {
 		this.playerOcean = playerOcean;
@@ -53,7 +53,7 @@ public class AIlogic {
 
 			for (int j = 0; j < playersOcean[0].length; j++) {
 
-				if (playerOcean.lookAtTile(i, j).equals("H")) {
+				if (tileHasHitButUnsunkenBoat(i, j)) {
 
 					for (int k = 0; k < 4; k++) {
 
@@ -116,7 +116,7 @@ public class AIlogic {
 		return coordinates;
 	}
 
-	private boolean isClockwise() {
+	private boolean isDirectionClockwise() {
 		if (rand.nextInt(1) == 0) {
 			// clockwise
 			return true;
@@ -133,10 +133,13 @@ public class AIlogic {
 	private int[] aiLogicMedium() {
 		Tile[][] playersOcean = playerOcean.getOcean();
 		// check playerOcean if there are any visible unsunken ships (H)
+
 		for (int i = 0; i < playersOcean.length; i++) {
 			for (int j = 0; j < playersOcean[0].length; j++) {
-				if (playerOcean.lookAtTile(i, j).equals("H")) {
-					boolean isClockWise = isClockwise();
+		
+				if (tileHasHitButUnsunkenBoat(i, j)) {
+					
+					boolean directionIsClockWise = isDirectionClockwise();
 					int direction = generateStartDirection();
 
 					for (int k = 0; k < 4; k++) {
@@ -175,7 +178,7 @@ public class AIlogic {
 							break;
 						}
 
-						if (isClockWise) {
+						if (directionIsClockWise) {
 							direction++;
 							if (direction == 4) {
 								direction = 0;
@@ -190,27 +193,25 @@ public class AIlogic {
 
 					}
 
-					// GEnerate startdirection
-
-					// If so - go in all directions to see if there are an unHit
-					// tile (boolean !tileHasBeenShotAt)
-					// generate clockwise/countclockwise
-
-					// if so shoot at that tile
-
 				}
 
 			}
 		}
-		// else shoot random
-		generateRandomCoordinates();
+
+		// shoot random
+
+		coordinates = aiLogicEasy();
+
 		return coordinates;
 
 	}
 
+	private boolean tileHasHitButUnsunkenBoat(int i, int j) {
+		return playerOcean.lookAtTile(i, j).equals("H");
+	}
+
 	private int[] aiLogicEasy() {
 		boolean validShot = false;
-		coordinates = null;
 
 		while (!validShot) {
 			generateRandomCoordinates();
@@ -236,12 +237,11 @@ public class AIlogic {
 	}
 
 	private void generateRandomCoordinates() {
-		// TODO: add same validation for validTile as for
-		// RandomExpertCoordinates
-		int row = rand.nextInt(10);
-		int column = rand.nextInt(10);
-		coordinates[0] = row;
-		coordinates[1] = column;
+
+			int row = rand.nextInt(10);
+			int column = rand.nextInt(10);
+			coordinates[0] = row;
+			coordinates[1] = column;
 
 	}
 
@@ -274,10 +274,5 @@ public class AIlogic {
 		int direction = rand.nextInt(3);
 		return getDirectionInString(direction);
 
-	}
-
-	public void placeAIShips() {
-		// TODO Auto-generated method stub
-		// aiOcean.placeBoat(row, column, boatLength, direction);
 	}
 }
