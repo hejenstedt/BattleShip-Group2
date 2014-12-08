@@ -1,10 +1,23 @@
+/*
+ * 
+ */
 package mainGame;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Ocean.
+ */
 public class Ocean {
 
+	/** The ocean. */
 	private Tile[][] ocean;
+	
+	/** The boats in ocean. */
 	private int boatsInOcean;
 
+	/**
+	 * Instantiates a new ocean.
+	 */
 	public Ocean() {
 		ocean = new Tile[10][10];
 		boatsInOcean = 0;
@@ -15,19 +28,39 @@ public class Ocean {
 		}
 	}
 
+	/**
+	 * Gets the boats in ocean.
+	 *
+	 * @return the boats in ocean
+	 */
 	public int getBoatsInOcean() {
 		return boatsInOcean;
 	}
 
 	//TODO: not used - remove
+	/**
+	 * Sets the boats in ocean.
+	 *
+	 * @param boatsInOcean the new boats in ocean
+	 */
 	public void setBoatsInOcean(int boatsInOcean) {
 		this.boatsInOcean = boatsInOcean;
 	}
 
+	/**
+	 * Gets the ocean.
+	 *
+	 * @return the ocean
+	 */
 	public Tile[][] getOcean() {
 		return ocean;
 	}
 
+	/**
+	 * All boats placed.
+	 *
+	 * @return true, if successful
+	 */
 	private boolean allBoatsPlaced() {
 
 		if (boatsInOcean == 5) {
@@ -37,6 +70,15 @@ public class Ocean {
 
 	}
 
+	/**
+	 * Place boat.
+	 *
+	 * @param row the row
+	 * @param column the column
+	 * @param boatLength the boat length
+	 * @param direction the direction
+	 * @param boatName the boat name
+	 */
 	public void placeBoat(int row, int column, int boatLength,
 			String direction, String boatName) {
 		// TODO: where should the validation logic be?
@@ -59,6 +101,14 @@ public class Ocean {
 
 	}
 
+	/**
+	 * Place boat on tiles.
+	 *
+	 * @param row the row
+	 * @param column the column
+	 * @param boat the boat
+	 * @param direction the direction
+	 */
 	private void placeBoatOnTiles(int row, int column, Boat boat,
 			String direction) {
 
@@ -89,6 +139,15 @@ public class Ocean {
 
 	}
 
+	/**
+	 * Checks if is placement valid.
+	 *
+	 * @param row the row
+	 * @param column the column
+	 * @param boatLength the boat length
+	 * @param direction the direction
+	 * @return true, if is placement valid
+	 */
 	private boolean isPlacementValid(int row, int column, int boatLength,
 			String direction) {
 		boolean validBoatPlacement = true;
@@ -133,6 +192,12 @@ public class Ocean {
 		return validBoatPlacement;
 	}
 
+	/**
+	 * Shoot.
+	 *
+	 * @param row the row
+	 * @param column the column
+	 */
 	public void shoot(int row, int column) {
 		if (isValidShot(row, column)) {
 			ocean[row][column].shootAtTile();
@@ -148,6 +213,13 @@ public class Ocean {
 		// TODO: return not a valid choice... what should be returned?
 	}
 
+	/**
+	 * Checks if is valid shot.
+	 *
+	 * @param row the row
+	 * @param column the column
+	 * @return true, if is valid shot
+	 */
 	boolean isValidShot(int row, int column) {
 
 		if (row > -1 && row < 10 && column > -1 && column < 10) {
@@ -159,11 +231,21 @@ public class Ocean {
 		return false;
 	}
 
+	/**
+	 * Look at tile.
+	 *
+	 * @param row the row
+	 * @param column the column
+	 * @return the string
+	 */
 	public String lookAtTile(int row, int column) {
 
 		return ocean[row][column].toString();
 	}
 
+	/**
+	 * Clean ocean.
+	 */
 	public void cleanOcean() {
 		boatsInOcean = 0;
 		for (int i = 0; i < ocean.length; i++) {
@@ -174,6 +256,9 @@ public class Ocean {
 		}
 	}
 
+	/**
+	 * Show ocean.
+	 */
 	public void showOcean() {
 
 		System.out.println("  A B C D E F G H I J");
@@ -192,6 +277,9 @@ public class Ocean {
 
 	}
 
+	/**
+	 * Show ocean with boats.
+	 */
 	public void showOceanWithBoats() {
 
 		System.out.println("  A B C D E F G H I J");
@@ -210,6 +298,13 @@ public class Ocean {
 
 	}
 
+	/**
+	 * Gets the tile.
+	 *
+	 * @param i the i
+	 * @param j the j
+	 * @return the tile
+	 */
 	public Tile getTile(int i, int j) {
 		return ocean[i][j];
 	}

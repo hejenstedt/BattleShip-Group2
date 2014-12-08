@@ -1,16 +1,35 @@
+/*
+ * 
+ */
 package mainGame;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class InputFromPlayer.
+ */
 public class InputFromPlayer {
 
+	/** The valid coordinates. */
 	private boolean validCoordinates;
+	
+	/** The valid letters. */
 	private char validLetters[];
+	
+	/** The valid numbers. */
 	private char validNumbers[];
+	
+	/** The coordinates array. */
 	private int coordinatesArray[];
+	
+	/** The keywords. */
 	private String keywords[];
 
+	/**
+	 * Instantiates a new input from player.
+	 */
 	public InputFromPlayer() {
 		validLetters = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
 				'i', 'j' };
@@ -20,6 +39,12 @@ public class InputFromPlayer {
 		keywords = new String[] { "exit", "show" };
 	}
 
+	/**
+	 * Gets the direction.
+	 *
+	 * @param input the input
+	 * @return the direction
+	 */
 	public String getDirection(BufferedReader input) {
 		String direction = null;
 		boolean validDirection = false;
@@ -48,6 +73,13 @@ public class InputFromPlayer {
 		return direction;
 	}
 
+	/**
+	 * Gets the input.
+	 *
+	 * @param input the input
+	 * @param inputType the input type
+	 * @return the input
+	 */
 	public String getInput(BufferedReader input, int inputType) {
 		validCoordinates = false;
 		String inputFromUser = null;
@@ -110,6 +142,12 @@ public class InputFromPlayer {
 
 	}
 
+	/**
+	 * Correct letter.
+	 *
+	 * @param inputAt0 the input at0
+	 * @return true, if successful
+	 */
 	private boolean correctLetter(char inputAt0) {
 		for (char i : validLetters) {
 			if (inputAt0 == i) {
@@ -119,6 +157,12 @@ public class InputFromPlayer {
 		return false;
 	}
 
+	/**
+	 * Correct number.
+	 *
+	 * @param inputAt1 the input at1
+	 * @return true, if successful
+	 */
 	private boolean correctNumber(char inputAt1) {
 		for (char i : validNumbers) {
 			if (inputAt1 == i) {
@@ -128,6 +172,12 @@ public class InputFromPlayer {
 		return false;
 	}
 
+	/**
+	 * Change coordinates to int.
+	 *
+	 * @param coordinates the coordinates
+	 * @return the int[]
+	 */
 	public int[] changeCoordinatesToInt(String coordinates) {
 
 		int letterCount = 0, numberCount = 0;
@@ -150,6 +200,13 @@ public class InputFromPlayer {
 		return coordinatesArray;
 	}
 
+	/**
+	 * Gets the user input for coordinates.
+	 *
+	 * @param br the br
+	 * @param inputType the input type
+	 * @return the user input for coordinates
+	 */
 	public int[] getUserInputForCoordinates(BufferedReader br, int inputType){
 		return changeCoordinatesToInt(getInput(br, inputType));
 	}

@@ -1,11 +1,21 @@
+/*
+ * 
+ */
 package mainGame;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TileTest.
+ */
 public class TileTest {
 
+	/**
+	 * Already shot tile should return x.
+	 */
 	@Test
 	public void alreadyShotTileShouldReturnX() {
 		Tile tile = new Tile();
@@ -13,12 +23,18 @@ public class TileTest {
 		assertTrue(tile.toString().equals("X"));
 	}
 
+	/**
+	 * Unshot tile should return tilde.
+	 */
 	@Test
 	public void unshotTileShouldReturnTilde(){
 		Tile tile = new Tile();
 		assertTrue(tile.toString().equals("~"));
 	}
 
+	/**
+	 * Tile with shot boat at should return h.
+	 */
 	@Test
 	public void tileWithShotBoatAtShouldReturnH(){
 		Tile tile = new Tile();
@@ -27,6 +43,9 @@ public class TileTest {
 		assertTrue(tile.toString().equals("H"));
 	}
 	
+	/**
+	 * Tile with sunken boat at should return1.
+	 */
 	@Test
 	public void tileWithSunkenBoatAtShouldReturn1(){
 		Tile tile = new Tile();

@@ -1,11 +1,21 @@
+/*
+ * 
+ */
 package mainGame;
 
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AIlogicTest.
+ */
 public class AIlogicTest {
 
+	/**
+	 * Ai generate coordinates should return two int0_9.
+	 */
 	@Test
 	public void aiGenerateCoordinatesShouldReturnTwoInt0_9() {
 		AIlogic ailogic = new AIlogic(new Ocean());
@@ -18,6 +28,9 @@ public class AIlogicTest {
 
 	}
 
+	/**
+	 * Ai generate ship direction should return1of4 directions.
+	 */
 	@Test
 	public void aiGenerateShipDirectionShouldReturn1of4Directions() {
 		AIlogic ailogic = new AIlogic(new Ocean());

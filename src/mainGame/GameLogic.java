@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package mainGame;
 
 import java.io.BufferedReader;
@@ -6,16 +9,38 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Random;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GameLogic.
+ */
 public class GameLogic {
 
+	/** The br. */
 	private BufferedReader br;
+	
+	/** The input. */
 	private InputFromPlayer input;
+	
+	/** The ai logic. */
 	private AIlogic aiLogic;
+	
+	/** The players. */
 	private ArrayList<Player> players;
+	
+	/** The player human. */
 	private Player playerHuman;
+	
+	/** The player ai. */
 	private Player playerAI;
+	
+	/** The difficulty. */
 	private int difficulty = 0;
 
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 
 		GameLogic game = new GameLogic();
@@ -30,6 +55,11 @@ public class GameLogic {
 		}
 	}
 
+	/**
+	 * Run game.
+	 *
+	 * @param game the game
+	 */
 	public void runGame(GameLogic game) {
 		game.placeShips();
 		game.playGame();
@@ -37,6 +67,11 @@ public class GameLogic {
 		// TODO: clear grid from boats after game
 	}
 
+	/**
+	 * Initialize game.
+	 *
+	 * @param game the game
+	 */
 	public void initializeGame(GameLogic game) {
 
 		br = new BufferedReader(new InputStreamReader(System.in));
@@ -54,6 +89,11 @@ public class GameLogic {
 
 	}
 
+	/**
+	 * Gets the settings.
+	 *
+	 * @return the settings
+	 */
 	public void getSettings() {
 		System.out.println("What is your name?");
 		try {
@@ -94,6 +134,9 @@ public class GameLogic {
 
 	}
 
+	/**
+	 * Giva ai random name.
+	 */
 	private void givaAIRandomName() {
 		Random rand = new Random();
 		int aiNameID = rand.nextInt(10);
@@ -135,6 +178,9 @@ public class GameLogic {
 		}
 	}
 
+	/**
+	 * Place ships.
+	 */
 	public void placeShips() {
 
 		String shipType[] = new String[] { null, null, "destroyer", "cruiser",
@@ -152,6 +198,13 @@ public class GameLogic {
 		}
 	}
 
+	/**
+	 * Place one ship.
+	 *
+	 * @param shipType the ship type
+	 * @param currentPlayer the current player
+	 * @param i the i
+	 */
 	private void placeOneShip(String shipType, Player currentPlayer, int i) {
 		String boatDirection;
 		int[] boatCoorinatesInt;
@@ -200,6 +253,9 @@ public class GameLogic {
 		}
 	}
 
+	/**
+	 * Play game.
+	 */
 	public void playGame() {
 		boolean allBoatsShotDown = false;
 		int[] coordinates = null;
@@ -263,6 +319,12 @@ public class GameLogic {
 
 	}
 
+	/**
+	 * Next player.
+	 *
+	 * @param currentPlayerFromList the current player from list
+	 * @return the player
+	 */
 	private Player nextPlayer(Player currentPlayerFromList) {
 		int next = players.indexOf(currentPlayerFromList) + 1;
 		if (next == 2) {
@@ -271,6 +333,12 @@ public class GameLogic {
 		return players.get(next);
 	}
 
+	/**
+	 * Ai text output.
+	 *
+	 * @param i the i
+	 * @param j the j
+	 */
 	private void aiTextOutput(int i, int j) {
 
 		System.out.print(playerAI.getName() + " shot at "
@@ -287,6 +355,12 @@ public class GameLogic {
 		}
 	}
 
+	/**
+	 * Coordinate to char.
+	 *
+	 * @param i the i
+	 * @return the string
+	 */
 	private String coordinateToChar(int i) {
 		switch (i) {
 		case 0:
@@ -314,6 +388,11 @@ public class GameLogic {
 		return "error";
 	}
 
+	/**
+	 * Gets the player coordinates.
+	 *
+	 * @return the player coordinates
+	 */
 	public int[] getPlayerCoordinates() {
 		boolean coordinatesSelected = false;
 		int[] coordinates = new int[2];
@@ -343,6 +422,11 @@ public class GameLogic {
 		return coordinates;
 	}
 
+	/**
+	 * Sleep.
+	 *
+	 * @param millis the millis
+	 */
 	public void sleep(int millis) {
 		try {
 			Thread.sleep(millis);

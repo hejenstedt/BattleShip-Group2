@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package mainGame;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -8,11 +11,19 @@ import org.junit.Before;
 import org.junit.Test;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class InputFromPlayerTest.
+ */
 public class InputFromPlayerTest {
 
+	/** The br. */
 	BufferedReader br;
 	
 	
+	/**
+	 * Creates the objects needed.
+	 */
 	@Before
 	public void createObjectsNeeded(){
 		br = new BufferedReader(new InputStreamReader(System.in));
@@ -28,6 +39,9 @@ public class InputFromPlayerTest {
 		
 	}*/
 	
+	/**
+	 * Test change coordinates to int.
+	 */
 	@Test
 	public void testChangeCoordinatesToInt(){
 		InputFromPlayer input = new InputFromPlayer();

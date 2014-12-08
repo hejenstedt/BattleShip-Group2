@@ -1,19 +1,42 @@
+/*
+ * 
+ */
 package mainGame;
 
 import java.util.Random;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AIlogic.
+ */
 public class AIlogic {
 
+	/** The player ocean. */
 	private Ocean playerOcean;
+	
+	/** The rand. */
 	private Random rand;
+	
+	/** The coordinates. */
 	private int[] coordinates;
 
+	/**
+	 * Instantiates a new a ilogic.
+	 *
+	 * @param playerOcean the player ocean
+	 */
 	public AIlogic(Ocean playerOcean) {
 		this.playerOcean = playerOcean;
 		rand = new Random();
 		coordinates = new int[2];
 	}
 
+	/**
+	 * Generate a icoordinates.
+	 *
+	 * @param difficulty the difficulty
+	 * @return the int[]
+	 */
 	public int[] generateAIcoordinates(int difficulty) {
 
 		int[] coordinates = null;
@@ -42,6 +65,11 @@ public class AIlogic {
 		return coordinates;
 	}
 
+	/**
+	 * Ai logic hard.
+	 *
+	 * @return the int[]
+	 */
 	private int[] aiLogicHard() {
 
 		coordinates = findUnsunkenBoats();
@@ -54,6 +82,11 @@ public class AIlogic {
 		return coordinates;
 	}
 
+	/**
+	 * Checks if is direction clockwise.
+	 *
+	 * @return true, if is direction clockwise
+	 */
 	private boolean isDirectionClockwise() {
 		if (rand.nextInt(1) == 0) {
 			// clockwise
@@ -64,10 +97,20 @@ public class AIlogic {
 		}
 	}
 
+	/**
+	 * Generate start direction.
+	 *
+	 * @return the int
+	 */
 	private int generateStartDirection() {
 		return rand.nextInt(3);
 	}
 
+	/**
+	 * Ai logic medium.
+	 *
+	 * @return the int[]
+	 */
 	private int[] aiLogicMedium() {
 
 		coordinates = findUnsunkenBoats();
@@ -82,6 +125,11 @@ public class AIlogic {
 
 	}
 
+	/**
+	 * Find unsunken boats.
+	 *
+	 * @return the int[]
+	 */
 	private int[] findUnsunkenBoats() {
 		Tile[][] playersOcean = playerOcean.getOcean();
 		// check playerOcean if there are any visible unsunken ships (H)
@@ -152,10 +200,22 @@ public class AIlogic {
 		return null;
 	}
 
+	/**
+	 * Tile has hit but unsunken boat.
+	 *
+	 * @param i the i
+	 * @param j the j
+	 * @return true, if successful
+	 */
 	private boolean tileHasHitButUnsunkenBoat(int i, int j) {
 		return playerOcean.lookAtTile(i, j).equals("H");
 	}
 
+	/**
+	 * Ai logic easy.
+	 *
+	 * @return the int[]
+	 */
 	private int[] aiLogicEasy() {
 		boolean validShot = false;
 
@@ -167,6 +227,12 @@ public class AIlogic {
 		return coordinates;
 	}
 
+	/**
+	 * Gets the direction in string.
+	 *
+	 * @param directionInt the direction int
+	 * @return the direction in string
+	 */
 	private String getDirectionInString(int directionInt) {
 		switch (directionInt) {
 
@@ -182,6 +248,9 @@ public class AIlogic {
 		return null;
 	}
 
+	/**
+	 * Generate random coordinates.
+	 */
 	private void generateRandomCoordinates() {
 
 		int row = rand.nextInt(10);
@@ -191,6 +260,9 @@ public class AIlogic {
 
 	}
 
+	/**
+	 * Generate random expert coordinates.
+	 */
 	private void generateRandomExpertCoordinates() {
 		boolean randomTileValid = false;
 
@@ -210,11 +282,21 @@ public class AIlogic {
 		}
 	}
 
+	/**
+	 * Generate ai ship coordinates.
+	 *
+	 * @return the int[]
+	 */
 	public int[] generateAIShipCoordinates() {
 		generateRandomCoordinates();
 		return coordinates;
 	}
 
+	/**
+	 * Generate ai ship direction.
+	 *
+	 * @return the string
+	 */
 	public String generateAIShipDirection() {
 
 		int direction = rand.nextInt(3);
