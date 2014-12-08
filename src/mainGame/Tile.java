@@ -1,8 +1,11 @@
 package mainGame;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
+import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
@@ -105,13 +108,19 @@ public class Tile {
 	 */
 	public void playSound(String fileName) {
 		String soundFile = "sounds\\" + fileName;
-		Clip clip;
 		try {
-			clip = AudioSystem.getClip();
-			clip.open(AudioSystem.getAudioInputStream(new File(soundFile)));
-			clip.start();
-		} catch (IOException | UnsupportedAudioFileException e) {
-			e.printStackTrace();
+		
+			InputStream audioSrc = getClass().getResourceAsStream(soundFile);
+			//add buffer for mark/reset support
+			InputStream bufferedIn = new BufferedInputStream(audioSrc);
+			AudioInputStream audioStream = AudioSystem.getAudioInputStream(bufferedIn);
+				
+			  Clip clip = AudioSystem.getClip();
+		         clip.open(audioStream);
+		        clip.start();
+			
+		} catch (UnsupportedAudioFileException | IOException e1) {
+			e1.printStackTrace();
 		} catch (LineUnavailableException e) {
 			e.printStackTrace();
 		}
