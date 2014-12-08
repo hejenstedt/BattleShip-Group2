@@ -1,6 +1,3 @@
-/*
- * 
- */
 package mainGame;
 
 import java.io.BufferedReader;
@@ -9,37 +6,23 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Random;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class GameLogic.
  */
 public class GameLogic {
 
-	/** The br. */
 	private BufferedReader br;
-	
-	/** The input. */
 	private InputFromPlayer input;
-	
-	/** The ai logic. */
 	private AIlogic aiLogic;
-	
-	/** The players. */
 	private ArrayList<Player> players;
-	
-	/** The player human. */
 	private Player playerHuman;
-	
-	/** The player ai. */
 	private Player playerAI;
-	
-	/** The difficulty. */
 	private int difficulty = 0;
 
 	/**
-	 * The main method.
+	 * The main method. Starts the game and when game is finished returns here
+	 * to start again.
 	 *
-	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
 
@@ -56,21 +39,18 @@ public class GameLogic {
 	}
 
 	/**
-	 * Run game.
+	 * Run game. Places the ships and starts the game itself.
 	 *
-	 * @param game the game
 	 */
 	public void runGame(GameLogic game) {
 		game.placeShips();
 		game.playGame();
 
-		// TODO: clear grid from boats after game
 	}
 
 	/**
-	 * Initialize game.
+	 * Initialize game, initializes the Players and AILogic..
 	 *
-	 * @param game the game
 	 */
 	public void initializeGame(GameLogic game) {
 
@@ -90,9 +70,8 @@ public class GameLogic {
 	}
 
 	/**
-	 * Gets the settings.
-	 *
-	 * @return the settings
+	 * Requests player for input of settings for the game. Name, difficulty of
+	 * AI.
 	 */
 	public void getSettings() {
 		System.out.println("What is your name?");
@@ -135,7 +114,7 @@ public class GameLogic {
 	}
 
 	/**
-	 * Giva ai random name.
+	 * Gives AI player a random name.
 	 */
 	private void givaAIRandomName() {
 		Random rand = new Random();
@@ -179,7 +158,7 @@ public class GameLogic {
 	}
 
 	/**
-	 * Place ships.
+	 * Place ships in the ocean.
 	 */
 	public void placeShips() {
 
@@ -199,11 +178,16 @@ public class GameLogic {
 	}
 
 	/**
-	 * Place one ship.
+	 * Place one ship. If currentplayer is a Human, this will show output and
+	 * request input. If currentplayer is an AI it will get coordinates from the
+	 * AILogic class.
 	 *
-	 * @param shipType the ship type
-	 * @param currentPlayer the current player
-	 * @param i the i
+	 * @param shipType
+	 *            - the boat name from placeShips()
+	 * @param currentPlayer
+	 *            the current player - Human or AI
+	 * @param i
+	 *            the length of the boat
 	 */
 	private void placeOneShip(String shipType, Player currentPlayer, int i) {
 		String boatDirection;
@@ -254,7 +238,9 @@ public class GameLogic {
 	}
 
 	/**
-	 * Play game.
+	 * Play game. Loops as long as there exists unsunken boats. Requests
+	 * coordinates from the player, shoots at it and hands over to the next
+	 * player.
 	 */
 	public void playGame() {
 		boolean allBoatsShotDown = false;
@@ -322,8 +308,9 @@ public class GameLogic {
 	/**
 	 * Next player.
 	 *
-	 * @param currentPlayerFromList the current player from list
-	 * @return the player
+	 * @param currentPlayerFromList
+	 *            the current player from list
+	 * @return the player that is up next.
 	 */
 	private Player nextPlayer(Player currentPlayerFromList) {
 		int next = players.indexOf(currentPlayerFromList) + 1;
@@ -334,10 +321,12 @@ public class GameLogic {
 	}
 
 	/**
-	 * Ai text output.
+	 * AI text output, when AI has shot on a Tile..
 	 *
-	 * @param i the i
-	 * @param j the j
+	 * @param i
+	 *            the row
+	 * @param j
+	 *            the column
 	 */
 	private void aiTextOutput(int i, int j) {
 
@@ -356,10 +345,11 @@ public class GameLogic {
 	}
 
 	/**
-	 * Coordinate to char.
+	 * Supportmethod to convert the column coordinate to a char. To be able to
+	 * show coordinates in format 1A in output. 
 	 *
-	 * @param i the i
-	 * @return the string
+	 * @param i - the column
+	 * @return the string 
 	 */
 	private String coordinateToChar(int i) {
 		switch (i) {
@@ -389,9 +379,9 @@ public class GameLogic {
 	}
 
 	/**
-	 * Gets the player coordinates.
+	 * Gets the player coordinates through input from Player.
 	 *
-	 * @return the player coordinates
+	 * @return the player coordinates as int[]
 	 */
 	public int[] getPlayerCoordinates() {
 		boolean coordinatesSelected = false;
@@ -425,7 +415,8 @@ public class GameLogic {
 	/**
 	 * Sleep.
 	 *
-	 * @param millis the millis
+	 * @param millis
+	 *            the millis
 	 */
 	public void sleep(int millis) {
 		try {

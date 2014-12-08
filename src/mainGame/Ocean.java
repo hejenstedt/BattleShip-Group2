@@ -1,22 +1,16 @@
-/*
- * 
- */
 package mainGame;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Ocean.
  */
 public class Ocean {
 
-	/** The ocean. */
 	private Tile[][] ocean;
-	
-	/** The boats in ocean. */
 	private int boatsInOcean;
 
 	/**
-	 * Instantiates a new ocean.
+	 * Instantiates a new ocean. 10 rows, 10 columns Instantiates a tile for
+	 * each position
 	 */
 	public Ocean() {
 		ocean = new Tile[10][10];
@@ -28,38 +22,18 @@ public class Ocean {
 		}
 	}
 
-	/**
-	 * Gets the boats in ocean.
-	 *
-	 * @return the boats in ocean
-	 */
 	public int getBoatsInOcean() {
 		return boatsInOcean;
 	}
 
-	//TODO: not used - remove
-	/**
-	 * Sets the boats in ocean.
-	 *
-	 * @param boatsInOcean the new boats in ocean
-	 */
-	public void setBoatsInOcean(int boatsInOcean) {
-		this.boatsInOcean = boatsInOcean;
-	}
-
-	/**
-	 * Gets the ocean.
-	 *
-	 * @return the ocean
-	 */
 	public Tile[][] getOcean() {
 		return ocean;
 	}
 
 	/**
-	 * All boats placed.
+	 * Checks if all boats are placed.
 	 *
-	 * @return true, if successful
+	 * @return true, if all boats are placed
 	 */
 	private boolean allBoatsPlaced() {
 
@@ -71,13 +45,18 @@ public class Ocean {
 	}
 
 	/**
-	 * Place boat.
+	 * Place boat in ocean.
 	 *
-	 * @param row the row
-	 * @param column the column
-	 * @param boatLength the boat length
-	 * @param direction the direction
-	 * @param boatName the boat name
+	 * @param row
+	 *            the row
+	 * @param column
+	 *            the column
+	 * @param boatLength
+	 *            the boat length
+	 * @param direction
+	 *            the direction
+	 * @param boatName
+	 *            the boat name
 	 */
 	public void placeBoat(int row, int column, int boatLength,
 			String direction, String boatName) {
@@ -102,12 +81,17 @@ public class Ocean {
 	}
 
 	/**
-	 * Place boat on tiles.
+	 * Place boat on tiles. Gets the starting position and in what direction the
+	 * boat should be placed according to the cardinal directions.
 	 *
-	 * @param row the row
-	 * @param column the column
-	 * @param boat the boat
-	 * @param direction the direction
+	 * @param row
+	 *            the row
+	 * @param column
+	 *            the column
+	 * @param boat
+	 *            the boat
+	 * @param direction
+	 *            the direction
 	 */
 	private void placeBoatOnTiles(int row, int column, Boat boat,
 			String direction) {
@@ -140,13 +124,18 @@ public class Ocean {
 	}
 
 	/**
-	 * Checks if is placement valid.
+	 * Checks if placement of boat is valid. No part of the boat should be on
+	 * top of another boat nor outside of the grid.
 	 *
-	 * @param row the row
-	 * @param column the column
-	 * @param boatLength the boat length
-	 * @param direction the direction
-	 * @return true, if is placement valid
+	 * @param row
+	 *            the row
+	 * @param column
+	 *            the column
+	 * @param boatLength
+	 *            the boat length
+	 * @param direction
+	 *            the direction
+	 * @return true, if placement is valid
 	 */
 	private boolean isPlacementValid(int row, int column, int boatLength,
 			String direction) {
@@ -193,10 +182,12 @@ public class Ocean {
 	}
 
 	/**
-	 * Shoot.
+	 * Shoot at a tile in the Ocean. If the shoot is invalid nothing happens.
 	 *
-	 * @param row the row
-	 * @param column the column
+	 * @param row
+	 *            the row
+	 * @param column
+	 *            the column
 	 */
 	public void shoot(int row, int column) {
 		if (isValidShot(row, column)) {
@@ -208,16 +199,16 @@ public class Ocean {
 				}
 			}
 
-			// TODO: should we return hit or miss from this method?
 		}
-		// TODO: return not a valid choice... what should be returned?
 	}
 
 	/**
-	 * Checks if is valid shot.
+	 * Checks if it is a valid shot.
 	 *
-	 * @param row the row
-	 * @param column the column
+	 * @param row
+	 *            the row
+	 * @param column
+	 *            the column
 	 * @return true, if is valid shot
 	 */
 	boolean isValidShot(int row, int column) {
@@ -232,11 +223,13 @@ public class Ocean {
 	}
 
 	/**
-	 * Look at tile.
+	 * Look at tile to see what it would show as in the Ocean.
 	 *
-	 * @param row the row
-	 * @param column the column
-	 * @return the string
+	 * @param row
+	 *            the row
+	 * @param column
+	 *            the column
+	 * @return the tile's toString
 	 */
 	public String lookAtTile(int row, int column) {
 
@@ -244,7 +237,8 @@ public class Ocean {
 	}
 
 	/**
-	 * Clean ocean.
+	 * Clean ocean. Remove all existing tiles and replace with new ones.
+	 * 
 	 */
 	public void cleanOcean() {
 		boatsInOcean = 0;
@@ -257,7 +251,8 @@ public class Ocean {
 	}
 
 	/**
-	 * Show ocean.
+	 * Show ocean. Prints the ocean out showing if a tile has been hit. And if a
+	 * boat is hit or sunk.
 	 */
 	public void showOcean() {
 
@@ -278,7 +273,7 @@ public class Ocean {
 	}
 
 	/**
-	 * Show ocean with boats.
+	 * Shows ocean with boats.
 	 */
 	public void showOceanWithBoats() {
 
@@ -298,13 +293,6 @@ public class Ocean {
 
 	}
 
-	/**
-	 * Gets the tile.
-	 *
-	 * @param i the i
-	 * @param j the j
-	 * @return the tile
-	 */
 	public Tile getTile(int i, int j) {
 		return ocean[i][j];
 	}

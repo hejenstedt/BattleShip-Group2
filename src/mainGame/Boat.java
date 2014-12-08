@@ -1,28 +1,21 @@
-/*
- * 
- */
 package mainGame;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Boat.
  */
 public class Boat {
-	
-	/** The boat shot at. */
+
 	private boolean[] boatShotAt;
-	
-	/** The boat length. */
 	private int boatLength;
-	
-	/** The name. */
 	private String name;
 
 	/**
-	 * Instantiates a new boat.
+	 * Instantiates a new boat, taking length and name as parameters.
 	 *
-	 * @param length the length
-	 * @param name the name
+	 * @param length
+	 *            - the length of the boat
+	 * @param name
+	 *            - the name of the boat
 	 */
 	public Boat(int length, String name) {
 		this.name = name;
@@ -34,17 +27,12 @@ public class Boat {
 
 	}
 
-	/**
-	 * Gets the boat length.
-	 *
-	 * @return the boat length
-	 */
 	public int getBoatLength() {
 		return boatLength;
 	}
 
 	/**
-	 * Boat sinked.
+	 * If boat is sinked returns true.
 	 *
 	 * @return true, if successful
 	 */
@@ -58,7 +46,7 @@ public class Boat {
 	}
 
 	/**
-	 * Sets the hit.
+	 * If the boat is shot adds a hit to the boatShotAt int[].
 	 */
 	public void setHit() {
 		for (int i = 0; i < boatShotAt.length; i++) {
@@ -69,8 +57,9 @@ public class Boat {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * ToString returns H as long as the boat is hit but not sunk. If sunk it
+	 * returns the length of boat.
 	 */
 	public String toString() {
 		if (boatSinked()) {
@@ -79,20 +68,10 @@ public class Boat {
 		return "H";
 	}
 
-	/**
-	 * Gets the name.
-	 *
-	 * @return the name
-	 */
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * Sets the name.
-	 *
-	 * @param name the new name
-	 */
 	public void setName(String name) {
 		this.name = name;
 	}

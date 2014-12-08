@@ -1,30 +1,17 @@
-/*
- * 
- */
 package mainGame;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class InputFromPlayer.
  */
 public class InputFromPlayer {
 
-	/** The valid coordinates. */
 	private boolean validCoordinates;
-	
-	/** The valid letters. */
 	private char validLetters[];
-	
-	/** The valid numbers. */
 	private char validNumbers[];
-	
-	/** The coordinates array. */
 	private int coordinatesArray[];
-	
-	/** The keywords. */
 	private String keywords[];
 
 	/**
@@ -40,10 +27,11 @@ public class InputFromPlayer {
 	}
 
 	/**
-	 * Gets the direction.
+	 * Gets the direction through input from Player.
 	 *
-	 * @param input the input
-	 * @return the direction
+	 * @param input
+	 *            the input
+	 * @return the direction as string
 	 */
 	public String getDirection(BufferedReader input) {
 		String direction = null;
@@ -74,17 +62,21 @@ public class InputFromPlayer {
 	}
 
 	/**
-	 * Gets the input.
+	 * Gets the input for coordinates (or possibilities to show ocean or exit)
+	 * from Player.
 	 *
-	 * @param input the input
-	 * @param inputType the input type
+	 * @param input
+	 *            the input
 	 * @return the input
 	 */
 	public String getInput(BufferedReader input, int inputType) {
 		validCoordinates = false;
 		String inputFromUser = null;
 
-		System.out.println("input coordinates: 'letter''digit' (for example B3)"); // TODO: Change text
+		System.out
+				.println("input coordinates: 'letter''digit' (for example B3)"); // TODO:
+																					// Change
+																					// text
 
 		while (!validCoordinates) {
 
@@ -97,7 +89,7 @@ public class InputFromPlayer {
 			if (inputFromUser.length() == 2) {
 				if (this.correctLetter(inputFromUser.charAt(0))
 						&& this.correctNumber(inputFromUser.charAt(1))) {
-					
+
 					validCoordinates = true;
 				}
 
@@ -119,7 +111,8 @@ public class InputFromPlayer {
 			else if (inputFromUser.equals(keywords[0])
 					|| inputFromUser.equals(keywords[1])) {
 
-				// Shows grid when in game, and asks for coordinates when placing ships
+				// Shows grid when in game, and asks for coordinates when
+				// placing ships
 				// inputType=1 is in 'place ship mode', and 0 is in game
 				if (inputType == 0) {
 					validCoordinates = true;
@@ -143,10 +136,11 @@ public class InputFromPlayer {
 	}
 
 	/**
-	 * Correct letter.
+	 * Checks if the entered letter in the coordinates is a correct letter.
 	 *
-	 * @param inputAt0 the input at0
-	 * @return true, if successful
+	 * @param inputAt0
+	 *            the input at position 0 in the coordinates[]
+	 * @return true, if letter is included in validletters
 	 */
 	private boolean correctLetter(char inputAt0) {
 		for (char i : validLetters) {
@@ -158,10 +152,11 @@ public class InputFromPlayer {
 	}
 
 	/**
-	 * Correct number.
+	 * Checks if the digit letter in the coordinates is a correct digit.
 	 *
-	 * @param inputAt1 the input at1
-	 * @return true, if successful
+	 * @param inputAt1
+	 *            the input at position 1 in the coordinates[]
+	 * @return true, if digit is included in validnumbers
 	 */
 	private boolean correctNumber(char inputAt1) {
 		for (char i : validNumbers) {
@@ -173,9 +168,10 @@ public class InputFromPlayer {
 	}
 
 	/**
-	 * Change coordinates to int.
+	 * Change coordinates to int. Gets the coordinates as a String from the input and converst it to a int[]
 	 *
-	 * @param coordinates the coordinates
+	 * @param coordinates
+	 *            the coordinates
 	 * @return the int[]
 	 */
 	public int[] changeCoordinatesToInt(String coordinates) {
@@ -203,12 +199,14 @@ public class InputFromPlayer {
 	/**
 	 * Gets the user input for coordinates.
 	 *
-	 * @param br the br
-	 * @param inputType the input type
+	 * @param br
+	 *            the bufferdReader used
+	 * @param inputType
+	 *            the input type
 	 * @return the user input for coordinates
 	 */
-	public int[] getUserInputForCoordinates(BufferedReader br, int inputType){
+	public int[] getUserInputForCoordinates(BufferedReader br, int inputType) {
 		return changeCoordinatesToInt(getInput(br, inputType));
 	}
-	
+
 }

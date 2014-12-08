@@ -1,29 +1,22 @@
-/*
- * 
- */
+
 package mainGame;
 
 import java.util.Random;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class AIlogic.
+ * The Class AILogic.
  */
 public class AIlogic {
 
-	/** The player ocean. */
 	private Ocean playerOcean;
-	
-	/** The rand. */
 	private Random rand;
-	
-	/** The coordinates. */
 	private int[] coordinates;
 
 	/**
-	 * Instantiates a new a ilogic.
+	 * Instantiates a new AILogic.
 	 *
-	 * @param playerOcean the player ocean
+	 * @param playerOcean
+	 *            the player ocean
 	 */
 	public AIlogic(Ocean playerOcean) {
 		this.playerOcean = playerOcean;
@@ -32,10 +25,12 @@ public class AIlogic {
 	}
 
 	/**
-	 * Generate a icoordinates.
+	 * Generate coordinates for the AI player. Depending on the difficulty sent
+	 * in it chooses the correct methods to use.
 	 *
-	 * @param difficulty the difficulty
-	 * @return the int[]
+	 * @param difficulty
+	 *            the difficulty
+	 * @return the coordinates as an int[]
 	 */
 	public int[] generateAIcoordinates(int difficulty) {
 
@@ -66,9 +61,9 @@ public class AIlogic {
 	}
 
 	/**
-	 * Ai logic hard.
+	 * AI logic, hard difficulty.
 	 *
-	 * @return the int[]
+	 * @return the coordinates as an int[]
 	 */
 	private int[] aiLogicHard() {
 
@@ -83,9 +78,10 @@ public class AIlogic {
 	}
 
 	/**
-	 * Checks if is direction clockwise.
+	 * Checks if direction is clockwise.
 	 *
-	 * @return true, if is direction clockwise
+	 * @return true, if direction is clockwise and false if directions is
+	 *         counter clockwise
 	 */
 	private boolean isDirectionClockwise() {
 		if (rand.nextInt(1) == 0) {
@@ -97,19 +93,14 @@ public class AIlogic {
 		}
 	}
 
-	/**
-	 * Generate start direction.
-	 *
-	 * @return the int
-	 */
 	private int generateStartDirection() {
 		return rand.nextInt(3);
 	}
 
 	/**
-	 * Ai logic medium.
+	 * AL logic, medium difficulty.
 	 *
-	 * @return the int[]
+	 * @return the coordinates as an int[]
 	 */
 	private int[] aiLogicMedium() {
 
@@ -126,9 +117,10 @@ public class AIlogic {
 	}
 
 	/**
-	 * Find unsunken boats.
+	 * Finds if there any unsunken boats that has been shot at (is shown as H on
+	 * the ocean).
 	 *
-	 * @return the int[]
+	 * @return the coordinates as an int[]
 	 */
 	private int[] findUnsunkenBoats() {
 		Tile[][] playersOcean = playerOcean.getOcean();
@@ -201,10 +193,12 @@ public class AIlogic {
 	}
 
 	/**
-	 * Tile has hit but unsunken boat.
+	 * Support method to retrun true if Tile has hit but unsunken boat.
 	 *
-	 * @param i the i
-	 * @param j the j
+	 * @param i
+	 *            the i
+	 * @param j
+	 *            the j
 	 * @return true, if successful
 	 */
 	private boolean tileHasHitButUnsunkenBoat(int i, int j) {
@@ -212,9 +206,9 @@ public class AIlogic {
 	}
 
 	/**
-	 * Ai logic easy.
+	 * AI Logic easy.
 	 *
-	 * @return the int[]
+	 * @return the coordinates as an int[]
 	 */
 	private int[] aiLogicEasy() {
 		boolean validShot = false;
@@ -228,9 +222,11 @@ public class AIlogic {
 	}
 
 	/**
-	 * Gets the direction in string.
+	 * Gets the direction as a string. Send in an int and this method will
+	 * return it as the corresponding string.
 	 *
-	 * @param directionInt the direction int
+	 * @param directionInt
+	 *            the direction int
 	 * @return the direction in string
 	 */
 	private String getDirectionInString(int directionInt) {
@@ -249,7 +245,7 @@ public class AIlogic {
 	}
 
 	/**
-	 * Generate random coordinates.
+	 * Generate random coordinates. Let's the AI shoot at a random tile.
 	 */
 	private void generateRandomCoordinates() {
 
@@ -261,7 +257,9 @@ public class AIlogic {
 	}
 
 	/**
-	 * Generate random expert coordinates.
+	 * Generate random expert coordinates. Let's the AI shoot at coordinates in
+	 * a grid pattern. It only shoots at every other tile - so to not need to
+	 * shot at any tile.
 	 */
 	private void generateRandomExpertCoordinates() {
 		boolean randomTileValid = false;
@@ -283,9 +281,9 @@ public class AIlogic {
 	}
 
 	/**
-	 * Generate ai ship coordinates.
+	 * Generate AI ship coordinates for placing boats.
 	 *
-	 * @return the int[]
+	 * @return the coordinates as an int[]
 	 */
 	public int[] generateAIShipCoordinates() {
 		generateRandomCoordinates();
@@ -293,7 +291,7 @@ public class AIlogic {
 	}
 
 	/**
-	 * Generate ai ship direction.
+	 * Generate AI ship direction for placing boats.
 	 *
 	 * @return the string
 	 */
