@@ -6,7 +6,7 @@ import java.util.Random;
 /**
  * The Class AILogic.
  */
-public class AIlogic {
+public class AILogic {
 
 	private Ocean playerOcean;
 	private Random rand;
@@ -18,7 +18,7 @@ public class AIlogic {
 	 * @param playerOcean
 	 *            the player ocean
 	 */
-	public AIlogic(Ocean playerOcean) {
+	public AILogic(Ocean playerOcean) {
 		this.playerOcean = playerOcean;
 		rand = new Random();
 		coordinates = new int[2];

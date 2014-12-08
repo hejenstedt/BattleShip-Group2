@@ -13,7 +13,7 @@ public class GameLogic {
 
 	private BufferedReader br;
 	private InputFromPlayer input;
-	private AIlogic aiLogic;
+	private AILogic aiLogic;
 	private ArrayList<Player> players;
 	private Player playerHuman;
 	private Player playerAI;
@@ -65,7 +65,7 @@ public class GameLogic {
 		players.add(playerAI);
 
 		input = new InputFromPlayer();
-		aiLogic = new AIlogic(playerHuman.getOcean());
+		aiLogic = new AILogic(playerHuman.getOcean());
 
 	}
 

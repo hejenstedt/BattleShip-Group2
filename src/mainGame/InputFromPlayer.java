@@ -74,9 +74,8 @@ public class InputFromPlayer {
 		String inputFromUser = null;
 
 		System.out
-				.println("input coordinates: 'letter''digit' (for example B3)"); // TODO:
-																					// Change
-																					// text
+				.println("input coordinates: 'letter' 'digit' (for example B3)"); 
+		// TODO: Change text
 
 		while (!validCoordinates) {
 

@@ -14,7 +14,7 @@ public class AIlogicTest {
 	 */
 	@Test
 	public void aiGenerateCoordinatesShouldReturnTwoInt0_9() {
-		AIlogic ailogic = new AIlogic(new Ocean());
+		AILogic ailogic = new AILogic(new Ocean());
 		int[] temp = ailogic.generateAIShipCoordinates();
 
 		assertTrue("int is 10 or higher", temp[0] < 10);
@@ -29,7 +29,7 @@ public class AIlogicTest {
 	 */
 	@Test
 	public void aiGenerateShipDirectionShouldReturn1of4Directions() {
-		AIlogic ailogic = new AIlogic(new Ocean());
+		AILogic ailogic = new AILogic(new Ocean());
 		String direction = ailogic.generateAIShipDirection();
 
 		assertTrue(direction.equals("south") || direction.equals("north")
