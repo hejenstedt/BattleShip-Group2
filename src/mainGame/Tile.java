@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.print.DocFlavor.URL;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -53,8 +54,7 @@ public class Tile {
 	}
 
 	/**
-	 * Shoot at tile.
-	 * Plays the corresponding sound for hit or miss.
+	 * Shoot at tile. Plays the corresponding sound for hit or miss.
 	 */
 	public void shootAtTile() {
 		tileHasBeenShootAt = true;
@@ -88,7 +88,8 @@ public class Tile {
 	}
 
 	/**
-	 * Tile returns the value of the boat if a boat exists on the tile. Otherwise it returns ~.
+	 * Tile returns the value of the boat if a boat exists on the tile.
+	 * Otherwise it returns ~.
 	 *
 	 * @return the string
 	 */
@@ -108,20 +109,26 @@ public class Tile {
 	 */
 	public void playSound(String fileName) {
 		String soundFile = "sounds\\" + fileName;
-		try {
 		
-			InputStream audioSrc = getClass().getResourceAsStream(soundFile);
-			//add buffer for mark/reset support
-			InputStream bufferedIn = new BufferedInputStream(audioSrc);
-			AudioInputStream audioStream = AudioSystem.getAudioInputStream(bufferedIn);
-				
-			  Clip clip = AudioSystem.getClip();
-		         clip.open(audioStream);
-		        clip.start();
+		File file = new File(soundFile);
+        
+		 try (AudioInputStream audioIn = AudioSystem.getAudioInputStream(file)){
 			
+			Clip clip = AudioSystem.getClip();
+			clip.open(audioIn);
+			clip.start();
+			while (!clip.isRunning())
+			    Thread.sleep(10);
+			while (clip.isRunning())
+			    Thread.sleep(10);
+			clip.close();
+
 		} catch (UnsupportedAudioFileException | IOException e1) {
 			e1.printStackTrace();
 		} catch (LineUnavailableException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
