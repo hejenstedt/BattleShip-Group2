@@ -1,6 +1,3 @@
-/*
- * 
- */
 package mainGame;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -11,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class InputFromPlayerTest.
  */

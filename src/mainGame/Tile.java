@@ -1,6 +1,3 @@
-/*
- * 
- */
 package mainGame;
 
 import java.io.File;
@@ -11,29 +8,14 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Tile.
  */
 public class Tile {
 
-	/** The boat exists on tile. */
 	private boolean boatExistsOnTile;
-	
-	/** The tile has been shoot at. */
 	private boolean tileHasBeenShootAt;
-	
-	/** The boat. */
 	private Boat boat;
-
-	/**
-	 * Gets the boat.
-	 *
-	 * @return the boat
-	 */
-	public Boat getBoat() {
-		return boat;
-	}
 
 	/**
 	 * Instantiates a new tile.
@@ -43,10 +25,15 @@ public class Tile {
 		boatExistsOnTile = false;
 	}
 
+	public Boat getBoat() {
+		return boat;
+	}
+
 	/**
-	 * Sets the boat on tile.
+	 * Sets the boatOnTile to true when a boat is placed on the tile.
 	 *
-	 * @param boat the new boat on tile
+	 * @param boat
+	 *            the new boat on tile
 	 */
 	public void setBoatOnTile(Boat boat) {
 		this.boat = boat;
@@ -54,9 +41,9 @@ public class Tile {
 	}
 
 	/**
-	 * Checks if is boat on tile.
+	 * Checks if there is a boat on the tile.
 	 *
-	 * @return true, if is boat on tile
+	 * @return true, if boat is on tile
 	 */
 	public boolean isBoatOnTile() {
 		return boatExistsOnTile;
@@ -64,6 +51,7 @@ public class Tile {
 
 	/**
 	 * Shoot at tile.
+	 * Plays the corresponding sound for hit or miss.
 	 */
 	public void shootAtTile() {
 		tileHasBeenShootAt = true;
@@ -84,9 +72,6 @@ public class Tile {
 		return tileHasBeenShootAt;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		if (tileHasBeenShootAt) {
@@ -100,7 +85,7 @@ public class Tile {
 	}
 
 	/**
-	 * Tile showing boat.
+	 * Tile returns the value of the boat if a boat exists on the tile. Otherwise it returns ~.
 	 *
 	 * @return the string
 	 */
@@ -115,7 +100,8 @@ public class Tile {
 	/**
 	 * Play sound.
 	 *
-	 * @param fileName the file name
+	 * @param fileName
+	 *            the file name
 	 */
 	public void playSound(String fileName) {
 		String soundFile = "sounds\\" + fileName;

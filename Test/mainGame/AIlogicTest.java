@@ -1,13 +1,9 @@
-/*
- * 
- */
 package mainGame;
 
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class AIlogicTest.
  */

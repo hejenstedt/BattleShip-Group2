@@ -1,13 +1,9 @@
-/*
- * 
- */
 package mainGame;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class TileTest.
  */
@@ -24,7 +20,7 @@ public class TileTest {
 	}
 
 	/**
-	 * Unshot tile should return tilde.
+	 * Unshot tile should return tile.
 	 */
 	@Test
 	public void unshotTileShouldReturnTilde(){
