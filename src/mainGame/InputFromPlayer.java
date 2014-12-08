@@ -52,7 +52,7 @@ public class InputFromPlayer {
 		validCoordinates = false;
 		String inputFromUser = null;
 
-		System.out.println("write coordinates:"); // TODO: Change text
+		System.out.println("input coordinates: 'letter''digit' (for example B3)"); // TODO: Change text
 
 		while (!validCoordinates) {
 
@@ -65,11 +65,12 @@ public class InputFromPlayer {
 			if (inputFromUser.length() == 2) {
 				if (this.correctLetter(inputFromUser.charAt(0))
 						&& this.correctNumber(inputFromUser.charAt(1))) {
+					
 					validCoordinates = true;
 				}
 
 				else if (this.correctLetter(inputFromUser.charAt(1))
-						|| this.correctNumber(inputFromUser.charAt(0))) {
+						&& this.correctNumber(inputFromUser.charAt(0))) {
 					inputFromUser = "" + inputFromUser.charAt(1)
 							+ inputFromUser.charAt(0);
 					validCoordinates = true;
@@ -86,7 +87,8 @@ public class InputFromPlayer {
 			else if (inputFromUser.equals(keywords[0])
 					|| inputFromUser.equals(keywords[1])) {
 
-				//TODO: What does below ifs mean? What is inputType 0 or 1??
+				// Shows grid when in game, and asks for coordinates when placing ships
+				// inputType=1 is in 'place ship mode', and 0 is in game
 				if (inputType == 0) {
 					validCoordinates = true;
 				} else if (inputType == 1 && inputFromUser.equals(keywords[0])) {
