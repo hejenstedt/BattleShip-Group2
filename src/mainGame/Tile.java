@@ -4,8 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-
-import javax.print.DocFlavor.URL;
+import java.net.URL;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -109,19 +108,20 @@ public class Tile {
 	 */
 	public void playSound(String fileName) {
 		String soundFile = "sounds\\" + fileName;
-		
-		File file = new File(soundFile);
+		Clip music;
+		InputStream url = this.getClass().getClassLoader().getResourceAsStream(soundFile);
         
-		 try (AudioInputStream audioIn = AudioSystem.getAudioInputStream(file)){
-			
-			Clip clip = AudioSystem.getClip();
-			clip.open(audioIn);
-			clip.start();
-			while (!clip.isRunning())
+		try{
+			AudioInputStream stream = AudioSystem.getAudioInputStream(url);   
+			music = AudioSystem.getClip();
+			music.open(stream);
+			music.start();
+	
+			while (!music.isRunning())
 			    Thread.sleep(10);
-			while (clip.isRunning())
+			while (music.isRunning())
 			    Thread.sleep(10);
-			clip.close();
+			music.close();
 
 		} catch (UnsupportedAudioFileException | IOException e1) {
 			e1.printStackTrace();
