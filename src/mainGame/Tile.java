@@ -1,6 +1,7 @@
 package mainGame;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.sound.sampled.AudioInputStream;
@@ -105,7 +106,7 @@ public class Tile {
 	 *            the file name
 	 */
 	public void playSound(String fileName) {
-		String soundFile = "sounds\\" + fileName;
+		String soundFile = "..\\sounds\\" + fileName;
 		
 		File file = new File(soundFile);
         
@@ -120,12 +121,43 @@ public class Tile {
 			    Thread.sleep(10);
 			clip.close();
 
-		} catch (UnsupportedAudioFileException | IOException e1) {
+		} catch (FileNotFoundException fie) {
+			soundFile = "sounds\\" + fileName;
+			
+			file = new File(soundFile);
+			try (AudioInputStream audioIn = AudioSystem.getAudioInputStream(file)){
+					
+					Clip clip = AudioSystem.getClip();
+					clip.open(audioIn);
+					clip.start();
+					while (!clip.isRunning())
+					    Thread.sleep(10);
+					while (clip.isRunning())
+					    Thread.sleep(10);
+					clip.close();
+
+				} catch (LineUnavailableException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (UnsupportedAudioFileException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			
+		}catch (UnsupportedAudioFileException e1) {
 			e1.printStackTrace();
 		} catch (LineUnavailableException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
+		}catch (IOException e) {
+
 		}
 	}
 
