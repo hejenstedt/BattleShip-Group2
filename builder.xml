@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<project name="Ant-Test" default="main" basedir=".">
+	<!-- Sets variables which can later be used. -->
+	<!-- The value of a property is accessed via ${} -->
+	<property name="src.dir" location="src" />
+	<property name="build.dir" location="bin" />
+	<property name="dist.dir" location="dist" />
+	<property name="doc.dir" location="doc" />
+
+	<!-- Deletes the existing build, docs and dist directory-->
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${doc.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+
+	<!-- Creates the  build, docs and dist directory-->
+	<target name="makedir">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${doc.dir}" />
+		<mkdir dir="${dist.dir}" />
+	</target>
+
+	<!-- Compiles the java code (including the usage of library for JUnit -->
+	<target name="compile" depends="clean, makedir">
+		<javac srcdir="${src.dir}" includeantruntime="false" destdir="${build.dir}" fork="true" executable="C:\Program Files\Java\jdk1.8.0_20\bin\javac">
+		</javac>
+
+	</target>
+
+	<!-- Creates Javadoc -->
+	<target name="docs" depends="compile">
+		<javadoc packagenames="src" destdir="${doc.dir}" executable="C:\Program Files\Java\jdk1.8.0_20\bin\javadoc.exe">
+			<!-- Define which files / directory should get included, we include all -->
+			<fileset dir="${src.dir}">
+				<include name="**" />
+			</fileset>
+		</javadoc>
+	</target>
+
+	<!--Creates the deployable jar file  -->
+	<!--THIS IS WHERE YOU SHOULD CHANGE. DESTFILE AND VALUE-->
+	<target name="jar" depends="compile">
+		<jar destfile="${dist.dir}\BattleShip.jar" basedir="${build.dir}">
+			<fileset dir="." includes="sounds/**">
+			</fileset>
+
+			<fileset dir="bin" includes="Test/**">
+			</fileset>
+
+			<manifest>
+				<attribute name="Main-Class" value="mainGame.GameLogic" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="main" depends="compile, jar, docs">
+		<description>Main target</description>
+	</target>
+
+</project>
